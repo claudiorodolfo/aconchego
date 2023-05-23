@@ -32,12 +32,57 @@
 				<br>
         <div class="form-group">
           <label for="nome">Nome</label>
-          <input type="text" class="form-control" id="nome" name="nome" value="<?php echo $item->getNome() ?>">
+          <input type="text" 
+            class="form-control" 
+            id="nome" 
+            name="nome" 
+            value="<?php echo $item->getNome() ?>"
+            Required>
         </div>
         <div class="form-group">
           <label for="email">E-mail</label>
-          <input type="email" class="form-control" id="email" name="email" value="<?php echo $item->getEmail() ?>">
-        </div>          
+          <input 
+            type="email" 
+            class="form-control" 
+            id="email" 
+            name="email" 
+            value="<?php echo $item->getEmail() ?>"
+            Required>
+        </div>    
+        <div class="form-group">
+          <label for="cpf">CPF</label>
+          <input type="text" 
+            class="form-control" 
+            id="cpf" 
+            name="cpf" 
+            value="<?php echo $item->getCpf() ?>">
+        </div>  
+        <div class="form-group">
+          <label for="data_nascimento">Data de Nascimento</label>
+          <input type="text" 
+            class="form-control" 
+            id="data_nascimento" 
+            name="data_nascimento" 
+            value="<?php echo $item->getDataNascimento() ?>">
+        </div>  
+        <div class="form-group">
+          <label for="telefone">Telefone</label>
+          <input type="text" 
+            class="form-control" 
+            id="telefone" 
+            name="telefone" 
+            value="<?php echo $item->getTelefone() ?>">
+        </div>  
+        <div class="form-group">
+          <label for="endereco">Endereço</label>
+          <textarea 
+            class="form-control" 
+            id="endereco" 
+            rows="3" 
+            name="endereco">
+            <?php echo $postagem->getEndereco() ?>
+          </textarea>
+        </div>                                   
         <div class="form-group">
           <label for="condutor">Nível Condutor(a)</label>
           <select class="form-control" id="condutor" name="condutor">
@@ -75,6 +120,13 @@
           <label for="foto">Foto</label>
           <input type="file" class="form-control" id="foto" name="foto" value="<?php echo $item->getFoto() ?>">
         </div>
+        <div class="form-group">
+          <label for="esta_ativo">Ativo</label>
+          <select class="form-control" id="ativo" name="atibo">
+            <option value="True" <?php echo ($item->getEstaAtivo() == 'True') ? 'selected':''; ?>>Sim</option>
+            <option value="False" <?php echo ($item->getEstaAtivo() == 'False') ? 'selected':''; ?>>Não</option>
+          </select>
+        </div>        
         <div class="form-group">
           <label for="senha">Senha:</label>
           <input type="password" class="form-control" id="senha" name="senha" value="<?php echo $item->getEmail() ?>">

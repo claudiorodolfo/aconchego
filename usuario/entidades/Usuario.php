@@ -13,10 +13,15 @@ class Usuario {
     private $id;
 	private $nome;
 	private $email;
+	private $cpf;
+	private $dataNascimento;
+	private $telefone;
+	private $endereco;
 	private $nivelCondutor;
 	private $nivelConduzido;
 	private $foto;
 	private $tipo;	
+	private $estaAtivo;
     private $senha;
 
 	public function __construct() {}
@@ -43,6 +48,37 @@ class Usuario {
 	
 	public function setEmail($email) {
 		$this->email = $email;
+	}
+
+	public function getCpf() {
+		return $this->cpf;
+	}
+	
+	public function setCpf($cpf) {
+		$this->cpf = $cpf;
+	}
+
+	public function getDataNascimento() {
+		return $this->dataNascimento;
+	}
+	
+	public function setDataNascimento($dataNascimento) {
+		$this->email = $dataNascimento;
+	}
+
+	public function getTelefone() {
+		return $this->telefone;
+	}
+	
+	public function setTelefone($telefone) {
+		$this->telefone = $telefone;
+	}
+	public function getEndereco() {
+		return $this->endereco;
+	}
+	
+	public function setEndereco($endereco) {
+		$this->endereco = $endereco;
 	}
 
 	public function getNivelCondutor() {
@@ -77,6 +113,13 @@ class Usuario {
 		$this->tipo = $tipo;
 	}
 
+    public function getEstaAtivo() {
+		return $this->estaAtivo;
+	}
+	
+	public function setEstaAtivo($estaAtivo) {
+		$this->estaAtivo = $estaAtivo;
+	}
 
     public function getSenha() {
 		return $this->senha;

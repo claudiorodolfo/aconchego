@@ -27,19 +27,29 @@
           <th>Id</th>
           <th>Nome</th>
           <th>E-mail</th>
+          <th>CPF</th>
+          <th>Data de Nascimento</th>
+          <th>Telefone</th>
+          <th>Endereço</th>
           <th>Nível Condutor(a)</th>
           <th>Nível Conduzido(a)</th>
           <th>Tipo</th>
-          <th>Foto</th>          
+          <th>Foto</th>
+          <th>Ativo</th>          
         </tr>
         <tr>             
           <td><?php echo $item->getId() ?></td>
           <td><?php echo $item->getNome() ?></td>
           <td><?php echo $item->getEmail() ?></td>          
           <td><?php echo $item->getNivelCondutor() ?></td>
+          <td><?php echo $item->getCpf() ?></td>
+          <td><?php echo $item->getDataNascimento() ?></td>
+          <td><?php echo $item->getTelefone() ?></td>
+          <td><?php echo $item->getEndereco() ?></td>                                        
           <td><?php echo $item->getNivelConduzido() ?></td>
-          <td><?php echo $item->getTipo() ?></td>          
+          <td><?php echo $item->getTipo() ?></td>         
           <td><?php echo $item->getFoto() ?></td>  
+          <td><?php echo $item->getEstaAtivo() ?></td>          
         </tr>
       </table>
       <a class="btn btn-outline-primary" href="index.php">Voltar</a>

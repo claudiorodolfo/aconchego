@@ -32,9 +32,14 @@ class UsuarioControlador {
         $item = new Usuario();
         $item->setNome($data['nome']);
         $item->setEmail($data['email']);
+        $item->setCpf($data['cpf'] ?? "");
+        $item->setDataNascimento($data['data_nascimento'] ?? "");
+        $item->setTelefone($data['telefone'] ?? "");
+        $item->setEndereco($data['endereco'] ?? "");
         $item->setNivelCondutor($data['condutor'] ?? "");
         $item->setNivelConduzido($data['conduzido'] ?? "");
         $item->setTipo($data['tipo']);
+        $item->setEstaAtivo($data['esta_ativo']);
         $item->setSenha($data['senha']);  
 
         if (isset($data['id']) && $data['id']) {

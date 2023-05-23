@@ -34,12 +34,17 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 	*/
 	public function criar($item) {
 		/** @var string $sql contém a instrução SQL a ser executada no BD */
-		$sql = "INSERT INTO Usuario (nome, email, nivelCondutor, nivelConduzido, tipo, senha) values (" .
+		$sql = "INSERT INTO Usuario (nome, email, cpf, dataNascimento, telefone, endereco, nivelCondutor, nivelConduzido, tipo, estaAtivo, senha) values (" .
 				"\"{$item->getNome()}\"," .
 				"\"{$item->getEmail()}\"," .
+				"\"{$item->getCpf()}\"," .
+				"\"{$item->getDataNascimento()}\"," .
+				"\"{$item->getTelefone()}\"," .
+				"\"{$item->getEndereco()}\"," .
 				"\"{$item->getNivelCondutor()}\"," .
 				"\"{$item->getNivelConduzido()}\"," .
 				"\"{$item->getTipo()}\"," .
+				"{$item->getEstaAtivo()}," .
 				"\"{$item->getSenha()}\"" .
 			")";
 		//print $sql;
@@ -68,9 +73,14 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 		$sql = "UPDATE Usuario SET " .
 		"nome = \"{$item->getNome()}\"," . 
 		"email = \"{$item->getEmail()}\"," .
+		"cpf = \"{$item->getCpf()}\"," .
+		"dataNascimento = \"{$item->getDataNascimento()}\"," .
+		"telefone = \"{$item->getTelefone()}\"," .
+		"endereco = \"{$item->getEndereco()}\"," .
 		"nivelCondutor = \"{$item->getNivelCondutor()}\"," .
 		"nivelConduzido = \"{$item->getNivelConduzido()}\", " .
 		"tipo = \"{$item->getTipo()}\", " .		
+		"estaAtivo = {$item->getEstaAtivo()}, " .	
 		"senha = \"". md5($item->getSenha()). "\" " .		      
 		"WHERE id = {$item->getId()}";
 		//print $sql;
@@ -93,10 +103,15 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 			$usuario = new Usuario();
 			$usuario->setId($linha['id']);
 			$usuario->setNome($linha['nome']);
-			$usuario->setEmail($linha['email']);            
+			$usuario->setEmail($linha['email']);       
+			$usuario->setCpf($linha['cpf'] ?? "");
+			$usuario->setDataNascimento($linha['dataNascimento'] ?? "");
+			$usuario->setTelefone($linha['telefone'] ?? "");
+			$usuario->setEndereco($linha['endereco'] ?? "");     
 			$usuario->setNivelCondutor($linha['nivelCondutor'] ?? "");
 			$usuario->setNivelConduzido($linha['nivelConduzido'] ?? "");
 			$usuario->setTipo($linha['tipo']);
+			$usuario->setEstaAtivo($linha['estaAtivo']);
 			$usuario->setFoto($linha['id'] . ".jpg");
 		}	
 		return $usuario;
