@@ -73,6 +73,7 @@ class Usuario {
 	public function setTelefone($telefone) {
 		$this->telefone = $telefone;
 	}
+	
 	public function getEndereco() {
 		return $this->endereco;
 	}

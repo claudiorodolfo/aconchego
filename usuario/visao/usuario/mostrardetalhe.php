@@ -21,6 +21,7 @@
       <?php
         require_once '../../entidades/Usuario.php' ;
         $item = unserialize($_SESSION['usuario']);
+        session_destroy();
       ?>
       <table class='table table-striped table-bordered'>
         <tr>

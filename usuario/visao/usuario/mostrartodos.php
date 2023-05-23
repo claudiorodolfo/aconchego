@@ -32,6 +32,7 @@
       <?php
         require_once '../../entidades/Usuario.php' ;        
         $array = unserialize($_SESSION['array']);
+        session_destroy();
         foreach($array as $item) {
       ?>
           <tr>

@@ -124,7 +124,7 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 	*/	
 	public function buscar($item) {
 		/** @var string $sql contém a instrução SQL a ser executada no BD */
-		$sql = "SELECT * FROM Usuario WHERE id = {$item->getId()}";
+		$sql = "SELECT id,nome,email,cpf,dataNascimento,telefone,endereco,nivelCondutor,nivelConduzido,tipo,estaAtivo FROM Usuario WHERE id = {$item->getId()}";
 		//print $sql;
 		$usuario;
 		$dados = mysqli_query($this->conexao, $sql);
