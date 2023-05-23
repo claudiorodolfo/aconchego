@@ -80,7 +80,7 @@
             id="endereco" 
             rows="3" 
             name="endereco">
-            <?php echo $postagem->getEndereco() ?>
+            <?php echo $item->getEndereco() ?>
           </textarea>
         </div>                                   
         <div class="form-group">

@@ -17,11 +17,11 @@ if (isset($_POST['acao'])) {
     /** @var UsuarioControlador $controlador permite chamar os métodos do controlador */
     $controlador = new UsuarioControlador();
 
+    session_start();
     switch ($_POST['acao']) {
         case 'autenticar':
             $item = $controlador->autenticar($_POST);
             if (isset($item)) {
-                session_start();
                 $_SESSION['login'] = serialize($item);
                 header("Location: ../visao/usuario/index.php");
             else {
@@ -38,20 +38,17 @@ if (isset($_POST['acao'])) {
             break;
         case 'buscar_detalhe':
             $item = $controlador->buscar($_POST['id']);
-            session_start();
             $_SESSION['usuario'] = serialize($item);
             header("Location: ../visao/usuario/mostrardetalhe.php");
             break;
         case 'buscar_atualizacao':
             $item = $controlador->buscar($_POST['id']);
-            session_start();
             $_SESSION['operacao'] = "atualizacao_usuario";
             $_SESSION['usuario'] = serialize($item);
             header("Location: ../visao/usuario/editar.php");
             break;
         case 'buscar_todos':
             $array = $controlador->buscarTodos();
-            session_start();
             $_SESSION["array"] = serialize($array);
             //print "<script>location.href='../visao/usuario/mostrartodos.php';</script>";   
             header("Location: ../visao/usuario/mostrartodos.php");
