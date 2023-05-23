@@ -13,27 +13,52 @@
     </head>
     <body class="p-3 m-0 border-1 bd-example">
         <div class="dropdown-menu">
-            <form class="px-4 py-3" method="controller/rotasUsuario.php" action="post">
+            <form 
+              id="form"
+              class="px-4 py-3" 
+              method="../../controlador/rotasUsuario.php" 
+              action="post">
+              <input type="hidden" name="acao" id="acao">
+
               <div class="mb-3">
-                <label for="exampleDropdownFormEmail1" class="form-label">E-mail:</label>
-                <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
+                <label for="email" class="form-label">E-mail:</label>
+                <input 
+                  type="email" 
+                  class="form-control" 
+                  id="email" 
+                  name="email"
+                  placeholder="email@exemplo.com"
+                  required>
               </div>
               <div class="mb-3">
-                <label for="exampleDropdownFormPassword1" class="form-label">Senha:</label>
-                <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
+                <label for="senha" class="form-label">Senha:</label>
+                <input 
+                  type="password" 
+                  class="form-control"
+                  id="senha" 
+                  name="senha"
+                  placeholder="Senha"
+                  required>
               </div>
               <div class="mb-3">
                 <div class="form-check">
-                  <input type="checkbox" class="form-check-input" id="dropdownCheck">
+                  <input type="checkbox" 
+                  class="form-check-input" 
+                  id="dropdownCheck">
                   <label class="form-check-label" for="dropdownCheck">
                     Lembre-me
                   </label>
                 </div>
               </div>
-              <button type="submit" class="btn btn-primary">Entrar</button>
+                <button 
+                  type="submit" 
+                  class="btn btn-primary"
+                  onclick="autenticar()">
+                    Entrar
+                </button>
             </form>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="controller/recupera_senha.php">Esqueceu a senha?</a>
+            <!--<a class="dropdown-item" href="../../controlador/recupera_senha.php">Esqueceu a senha?</a>-->
           </div>
     </body>
 </html>                

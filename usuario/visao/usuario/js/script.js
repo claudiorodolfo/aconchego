@@ -1,3 +1,9 @@
+function autenticar() {
+    //vê se ta tudo ok. Se estiver submeter o formulario
+    $("#acao").val('autenticar');
+    $("#form").submit();
+}
+
 function apagar(id) {
     var confirm = window.confirm("Deseja realmente apagar o registro?");
 

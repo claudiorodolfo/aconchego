@@ -27,6 +27,36 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 		$this->conexao = self::$mysqlDB->getConexao();
 	}
 
+	/**
+	* Autentica um Usuario  no banco de dados MySQL
+	* @param Usuario $usuario objeto POJO de uma Usuario
+	* @return Usuario
+	*/	
+	public function autenticar($item) {
+		/** @var string $sql contém a instrução SQL a ser executada no BD */
+		$sql = "SELECT * FROM Usuario WHERE email = \"{$item->getEmail()}\" and senha = \"{$item->getSenha()}\"";
+		//print $sql;
+		$usuario;
+		$dados = mysqli_query($this->conexao, $sql);
+		if (mysqli_num_rows($dados) > 0) {
+			$linha = mysqli_fetch_array($dados);
+			$usuario = new Usuario();
+			$usuario->setId($linha['id']);
+			$usuario->setNome($linha['nome']);
+			$usuario->setEmail($linha['email']);       
+			$usuario->setCpf($linha['cpf'] ?? "");
+			$usuario->setDataNascimento($linha['dataNascimento'] ?? "");
+			$usuario->setTelefone($linha['telefone'] ?? "");
+			$usuario->setEndereco($linha['endereco'] ?? "");     
+			$usuario->setNivelCondutor($linha['nivelCondutor'] ?? "");
+			$usuario->setNivelConduzido($linha['nivelConduzido'] ?? "");
+			$usuario->setTipo($linha['tipo']);
+			$usuario->setEstaAtivo($linha['estaAtivo']);
+			$usuario->setFoto($linha['id'] . ".jpg");
+		}	
+		return $usuario;
+	}
+
    /**
 	* Insere um novo Usuario no banco de dados MySQL
 	* @param Usuario $usuario objeto POJO de um Usuario
@@ -45,7 +75,7 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 				"\"{$item->getNivelConduzido()}\"," .
 				"\"{$item->getTipo()}\"," .
 				"{$item->getEstaAtivo()}," .
-				"\"{$item->getSenha()}\"" .
+				"\"". md5($item->getSenha()). "\"" .
 			")";
 		//print $sql;
 		mysqli_query($this->conexao, $sql);

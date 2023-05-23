@@ -23,6 +23,17 @@ class UsuarioControlador {
         $this->dao = new UsuarioDAOMySQL();
     }
 
+    /**
+	* Autentica o Usuario no BD
+	* @return Usuario
+	*/
+    public function autenticar($data) {
+        $item = new Usuario();
+        $item->setEmail($data['email']);
+        $item->md5(setSenha($data['senha'])); 
+        return $this->dao->autenticar($item);
+    }
+
    /**
 	* Salva uma Usuario no BD
 	* @param $data é um array $_POST[] com informações da camada de Visão

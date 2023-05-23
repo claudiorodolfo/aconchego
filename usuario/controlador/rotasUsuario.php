@@ -18,6 +18,16 @@ if (isset($_POST['acao'])) {
     $controlador = new UsuarioControlador();
 
     switch ($_POST['acao']) {
+        case 'autenticar':
+            $item = $controlador->autenticar($_POST);
+            if (isset($item)) {
+                session_start();
+                $_SESSION['login'] = serialize($item);
+                header("Location: ../visao/usuario/index.php");
+            else {
+                header("Location: ../visao/usuario/autenticacao.php");
+            }
+            break;
         case 'salvar':
             $controlador->salvar($_POST);
             header("Location: ../visao/usuario/index.php");
