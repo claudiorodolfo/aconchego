@@ -123,8 +123,8 @@
         <div class="form-group">
           <label for="esta_ativo">Ativo</label>
           <select class="form-control" id="ativo" name="atibo">
-            <option value="True" <?php echo ($item->getEstaAtivo() == 'True') ? 'selected':''; ?>>Sim</option>
-            <option value="False" <?php echo ($item->getEstaAtivo() == 'False') ? 'selected':''; ?>>Não</option>
+            <option value="0" <?php echo ($item->getEstaAtivo() == '0') ? 'selected':''; ?>>Não</option>
+            <option value="1" <?php echo ($item->getEstaAtivo() == '1') ? 'selected':''; ?>>Sim</option>
           </select>
         </div>        
         <div class="form-group">

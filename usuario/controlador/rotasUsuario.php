@@ -24,7 +24,7 @@ if (isset($_POST['acao'])) {
             if (isset($item)) {
                 $_SESSION['login'] = serialize($item);
                 header("Location: ../visao/usuario/index.php");
-            else {
+            } else {
                 header("Location: ../visao/usuario/autenticacao.php");
             }
             break;

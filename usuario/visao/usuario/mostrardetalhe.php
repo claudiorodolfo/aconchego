@@ -49,7 +49,7 @@
           <td><?php echo $item->getNivelConduzido() ?></td>
           <td><?php echo $item->getTipo() ?></td>         
           <td><?php echo $item->getFoto() ?></td>  
-          <td><?php echo $item->getEstaAtivo() ?></td>          
+          <td><?php echo ($item->getEstaAtivo() == '0') ? 'Não': 'Sim'; ?></td>          
         </tr>
       </table>
       <a class="btn btn-outline-primary" href="index.php">Voltar</a>
