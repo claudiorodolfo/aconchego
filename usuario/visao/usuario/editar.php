@@ -26,7 +26,7 @@
         }
       ?>
       <form
-      enctype="form-data"
+      enctype="multipart/form-data"
       action="../../controlador/rotasUsuario.php"
       method="post">
         <input type="hidden" name="acao" value="salvar">
