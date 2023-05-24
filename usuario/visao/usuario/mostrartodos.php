@@ -35,7 +35,7 @@
       </tr>
       <?php        
         $array = unserialize($_SESSION['array']);
-        session_destroy();
+        //session_destroy();
         foreach($array as $item) {
       ?>
           <tr>

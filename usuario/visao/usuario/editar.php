@@ -22,7 +22,7 @@
         $item = new Usuario();
         if (isset($_SESSION["operacao"]) && $_SESSION["operacao"] == "atualizacao_usuario") {
           $item = unserialize($_SESSION['usuario']);
-          session_destroy();
+          //session_destroy();
         }
       ?>
       <form
