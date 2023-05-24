@@ -2,12 +2,11 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-
 -- Banco de dados: `claudior_teste`
--- CREATE DATABASE IF NOT EXISTS `claudior_teste`;
--- ALTER DATABASE `claudior_teste` CHARSET = UTF8 COLLATE = utf8_general_ci;
-
+ CREATE DATABASE IF NOT EXISTS `claudior_teste`;
+ ALTER DATABASE `claudior_teste` CHARSET = UTF8 COLLATE = utf8_general_ci;
+ USE `claudior_teste`;
+ 
 ----------------------------------------------------------
 -- Estruturas das tabelas
 -- Estrutura para tabela `Usuario`

@@ -63,7 +63,7 @@ class Usuario {
 	}
 	
 	public function setDataNascimento($dataNascimento) {
-		$this->email = $dataNascimento;
+		$this->dataNascimento = $dataNascimento;
 	}
 
 	public function getTelefone() {

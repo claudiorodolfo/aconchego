@@ -10,12 +10,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!--Programador-->
+    <!-- Programador -->
     <title>Controle de Usuários</title>    
     <script src="js/script.js"></script>        
   </head> 
   <body>
-    <?php session_start(); ?>
+    <?php 
+      session_start(); 
+    ?>
     <div class="container">
       <br><br>
       <?php
@@ -42,11 +44,11 @@
           <td><?php echo $item->getId() ?></td>
           <td><?php echo $item->getNome() ?></td>
           <td><?php echo $item->getEmail() ?></td>          
-          <td><?php echo $item->getNivelCondutor() ?></td>
           <td><?php echo $item->getCpf() ?></td>
           <td><?php echo $item->getDataNascimento() ?></td>
           <td><?php echo $item->getTelefone() ?></td>
-          <td><?php echo $item->getEndereco() ?></td>                                        
+          <td><?php echo $item->getEndereco() ?></td>     
+          <td><?php echo $item->getNivelCondutor() ?></td>                                   
           <td><?php echo $item->getNivelConduzido() ?></td>
           <td><?php echo $item->getTipo() ?></td>         
           <td><?php echo $item->getFoto() ?></td>  

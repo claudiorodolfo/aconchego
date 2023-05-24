@@ -14,9 +14,11 @@
 
 /** @var String $_POST['acao'] define a ação que o usuário deseja executar no CRUD */
 if (isset($_POST['acao'])) {
+   
     /** @var UsuarioControlador $controlador permite chamar os métodos do controlador */
     $controlador = new UsuarioControlador();
-    session_start();
+
+    session_start();   
     switch ($_POST['acao']) {
         case 'autenticar':
             $item = $controlador->autenticar($_POST);

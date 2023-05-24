@@ -20,8 +20,8 @@ class ConexaoMySQL {
 	* Cria uma conexão específica com um BD MySQL
 	*/
     private function __construct() {
-		//$data = file_get_contents("bd.json");
-		//print($data);
+		header("Content-Type: application/json; charset=UTF-8");
+		$data = file_get_contents("bd.json");
 		//$json = json_decode($data);
 		//print $json->hostname;
 		//print $json->username;

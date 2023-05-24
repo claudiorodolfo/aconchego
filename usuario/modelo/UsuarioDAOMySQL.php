@@ -171,7 +171,6 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 			$item->setTipo($linha['tipo'] ?? "");
 			$array[$i] = $item;		
 		}
-		print "vou retornar";
 		return $array;
 	}
 

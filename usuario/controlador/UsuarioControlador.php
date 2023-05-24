@@ -30,7 +30,7 @@ class UsuarioControlador {
     public function autenticar($data) {
         $item = new Usuario();
         $item->setEmail($data['email']);
-        $item->md5(setSenha($data['senha'])); 
+        $item->setSenha(md5($data['senha'])); 
         return $this->dao->autenticar($item);
     }
 

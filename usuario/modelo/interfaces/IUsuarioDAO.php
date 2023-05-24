@@ -12,6 +12,12 @@
 interface IUsuarioDAO {
 
 	/**
+	* autentica um Usuario
+	* @param Usuario $usuario objeto POJO de uma Usuario
+	*/
+	public function autenticar($item);
+
+	/**
 	* cria uma Usuario
 	* @param Usuario $usuario objeto POJO de uma Usuario
 	*/
