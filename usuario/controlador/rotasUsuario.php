@@ -16,7 +16,6 @@
 if (isset($_POST['acao'])) {
     /** @var UsuarioControlador $controlador permite chamar os métodos do controlador */
     $controlador = new UsuarioControlador();
-
     session_start();
     switch ($_POST['acao']) {
         case 'autenticar':
@@ -49,7 +48,7 @@ if (isset($_POST['acao'])) {
             break;
         case 'buscar_todos':
             $array = $controlador->buscarTodos();
-            $_SESSION["array"] = serialize($array);
+            $_SESSION["array"] = serialize($array);        
             //print "<script>location.href='../visao/usuario/mostrartodos.php';</script>";   
             header("Location: ../visao/usuario/mostrartodos.php");
             break;

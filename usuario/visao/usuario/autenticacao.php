@@ -8,16 +8,15 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
         <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!--Programador-->
+        <!-- Programador -->
         <title>Autenticação</title>    
     </head>
     <body class="p-3 m-0 border-1 bd-example">
         <div class="dropdown-menu">
-            <form 
-              id="form"
-              class="px-4 py-3" 
-              action="../../controlador/rotasUsuario.php"
-              method="post">
+        <form id="form" 
+          method="post" 
+          action="../../controlador/rotasUsuario.php"
+          class="px-4 py-3">
               <input type="hidden" name="acao" id="acao">
 
               <div class="mb-3">

@@ -155,7 +155,7 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 		/** @var string $sql contém a instrução SQL a ser executada no BD */	
 		$sql = "SELECT id, nome, tipo " .
 		"FROM Usuario " . 
-		"WHERE tipo <> 'Admin'" . 
+		"WHERE tipo <> 'Admin' " . 
 		"ORDER BY tipo, nome";
 		//print $sql;
 		$dados = mysqli_query($this->conexao, $sql);
@@ -163,15 +163,15 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 		$array = [];
 		/** @var quantidade é o número de registros retornados do BD */
 		$quantidade = mysqli_num_rows($dados);
-
 		for($i = 0; $i < $quantidade; $i++) {
 			$linha = mysqli_fetch_array($dados);
 			$item = new Usuario();
 			$item->setId($linha['id']);
-			$item->setNome($linha['nome'] ?? "");           
+			$item->setNome($linha['nome']);           
 			$item->setTipo($linha['tipo'] ?? "");
 			$array[$i] = $item;		
 		}
+		print "vou retornar";
 		return $array;
 	}
 

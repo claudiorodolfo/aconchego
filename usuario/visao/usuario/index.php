@@ -15,7 +15,9 @@
     <script src="js/script.js"></script>        
   </head> 
   <body onload="buscarTodos()">
-    <form id="form" method="post" action="../../controlador/rotasUsuario.php">                                
+    <form id="form" 
+    method="post" 
+    action="../../controlador/rotasUsuario.php">                                
       <input type="hidden" name="acao" id="acao">
     </form>
   </body>

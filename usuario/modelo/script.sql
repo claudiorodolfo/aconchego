@@ -1,162 +1,128 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: localhost:3306
--- Tempo de geração: 23/05/2023 às 23:37
--- Versão do servidor: 5.6.51-cll-lve
--- Versão do PHP: 8.1.16
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
---
--- Banco de dados: `claudior_escola`
---
+-- Banco de dados: `claudior_teste`
+-- CREATE DATABASE IF NOT EXISTS `claudior_teste`;
+-- ALTER DATABASE `claudior_teste` CHARSET = UTF8 COLLATE = utf8_general_ci;
 
--- --------------------------------------------------------
+----------------------------------------------------------
+-- Estruturas das tabelas
+-- Estrutura para tabela `Usuario`
+CREATE TABLE IF NOT EXISTS `Usuario` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(64) NOT NULL,
+  `email` varchar(64) NOT NULL,
+  `cpf` char(11) DEFAULT NULL,
+  `dataNascimento` date DEFAULT NULL,
+  `telefone` char(11) DEFAULT NULL,
+  `endereco` varchar(256) DEFAULT NULL,
+  `nivelCondutor` varchar(16) DEFAULT NULL,
+  `nivelConduzido` varchar(16) DEFAULT NULL,
+  `tipo` varchar(16) NOT NULL,
+  `estaAtivo` tinyint(1) NOT NULL,
+  `senha` char(32) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
+-- Estrutura para tabela `Exame`
+CREATE TABLE IF NOT EXISTS `Exame` (
+  `data` date NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- Estrutura para tabela `Parametro`
+CREATE TABLE IF NOT EXISTS `Parametro` (
+  `id` int(11) NOT NULL,
+  `nivel` varchar(16) NOT NULL,
+  `velocidade` varchar(16) NOT NULL,
+  `quesito` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 -- Estrutura para tabela `Avaliacao`
---
-
-CREATE TABLE `Avaliacao` (
+CREATE TABLE IF NOT EXISTS `Avaliacao` (
   `id` int(11) NOT NULL,
   `exame` date NOT NULL,
+  `papel` varchar(15) NOT NULL,
   `nivel` varchar(16) NOT NULL,
   `aluno` int(11) NOT NULL,
   `professor` int(11) NOT NULL,
   `observacao` varchar(255) NOT NULL,
   `status` varchar(15) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Despejando dados para a tabela `Avaliacao`
---
 
-INSERT INTO `Avaliacao` (`id`, `exame`, `nivel`, `aluno`, `professor`, `observacao`, `status`) VALUES
-(1, '2023-05-01', 'Bicho de Pé', 8, 2, 'Precisa melhorar muito', 'Reprovado'),
-(3, '2023-05-15', 'EstakaZero', 9, 2, 'Corrigir ritmo', 'Aprovado'),
-(2, '2023-05-15', 'Bicho de Pé', 8, 2, 'Parabéns e bem-vindo a nova turma', 'Aprovado'),
-(4, '2023-05-15', 'EstakaZero', 7, 2, 'Pulando muito', 'Reprovado');
+-- Estrutura para tabela `Nota`
+CREATE TABLE IF NOT EXISTS `Nota` (
+  `avaliacao` int(11) NOT NULL,
+  `parametro` int(11) NOT NULL,
+  `nota` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
+----------------------------------------------------------
+-- Chaves para tabelas
+-- Chave primária de tabela `Avaliacao`
+ALTER TABLE `Avaliacao`
+  ADD CONSTRAINT Avaliacao_id PRIMARY KEY (`id`);
 
---
--- Estrutura para tabela `Exame`
---
+-- Chave primária de tabela `Exame`
+ALTER TABLE `Exame`
+  ADD CONSTRAINT Exame_data PRIMARY KEY (`data`);
 
-CREATE TABLE `Exame` (
-  `data` date NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+-- Chave primária de tabela `Parametro`
+ALTER TABLE `Parametro`
+  ADD CONSTRAINT Parametro_id PRIMARY KEY (`id`);
 
---
+-- Chave primária de tabela `Usuario`
+ALTER TABLE `Usuario`
+  ADD CONSTRAINT Usuario_id PRIMARY KEY (`id`);
+
+-- Chave primária de tabela `Nota`
+ALTER TABLE `Nota`
+  ADD CONSTRAINT Usuario_avaliacao_parametro PRIMARY KEY (`avaliacao`, `parametro`);
+
+-- Chaves Estrangeiras de tabela `Avaliacao`
+ALTER TABLE `Avaliacao`
+  ADD CONSTRAINT Avaliacao_aluno FOREIGN KEY (`aluno`) REFERENCES `Usuario`(`id`),
+  ADD CONSTRAINT Avaliacao_professor FOREIGN KEY (`professor`) REFERENCES `Usuario`(`id`),
+  ADD CONSTRAINT Avaliacao_exame FOREIGN KEY (`exame`) REFERENCES `Exame`(`data`);
+
+ALTER TABLE `Nota`
+  ADD CONSTRAINT Nota_parametro FOREIGN KEY (`parametro`) REFERENCES `Parametro`(`id`),
+  ADD CONSTRAINT Nota_avaliacao FOREIGN KEY (`avaliacao`) REFERENCES `Avaliacao`(`id`);
+
+----------------------------------------------------------
+-- AUTO_INCREMENT para tabelas
+-- AUTO_INCREMENT de tabela `Avaliacao`
+ALTER TABLE `Avaliacao`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+-- AUTO_INCREMENT de tabela `Parametro`
+ALTER TABLE `Parametro`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+
+-- AUTO_INCREMENT de tabela `Usuario`
+ALTER TABLE `Usuario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+----------------------------------------------------------
+
+-- Despejando dados para a tabela `Usuario`
+INSERT INTO `Usuario` (`id`, `nome`, `email`, `cpf`, `dataNascimento`, `telefone`, `endereco`, `nivelCondutor`, `nivelConduzido`, `tipo`, `estaAtivo`, `senha`) VALUES
+(2, 'Joao Pedro Lessa', 'jp_aconchego@gmail.com', '12312312322', NULL, '77985676543', 'Rua B', 'Luiz Gonzaga', 'Dominguinhos', 'Professor', 1, '81dc9bdb52d04dc20036dbd8313ed055'),
+(3, 'Administrador', 'aconchegodance@gmail.com', NULL, NULL, NULL, 'Rua C', NULL, NULL, 'Admin', 1, '81dc9bdb52d04dc20036dbd8313ed055'),
+(4, 'Leonardo Fernandes', 'leotonageral@gmail.com', '23445634512', '1998-06-02', '77998989898', 'Rua D', 'Bicho de PÃ©', 'EstakaZero', 'Aluno', 1, '81dc9bdb52d04dc20036dbd8313ed055'),
+(6, 'Lara Vieira', 'lavie@gmail.com', '46233453455', '1997-02-05', '77988888888', NULL, 'Dominguinhos', 'Luiz Gonzaga', 'Professor', 1, '81dc9bdb52d04dc20036dbd8313ed055'),
+(9, 'Gildeao Pirraca', 'gillpicarra@gmail.com', '12345678912', '1990-01-01', NULL, 'Rua A, Bairro Boa Vista', 'Bicho de PÃ©', 'EstakaZero', 'Aluno', 0, '81dc9bdb52d04dc20036dbd8313ed055'),
+(8, 'Claudio Rodolfo S. de Oliveira', 'claudio.ifbavc@gmail.com', NULL, '1983-12-11', '77999913679', '', 'Virgulino', 'EstakaZero', 'Aluno', 1, '81dc9bdb52d04dc20036dbd8313ed055');
+
 -- Despejando dados para a tabela `Exame`
---
-
 INSERT INTO `Exame` (`data`) VALUES
 ('2023-03-07'),
 ('2023-05-01'),
 ('2023-05-15');
 
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `Nota`
---
-
-CREATE TABLE `Nota` (
-  `avaliacao` int(11) NOT NULL,
-  `parametro` int(11) NOT NULL,
-  `nota` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Despejando dados para a tabela `Nota`
---
-
-INSERT INTO `Nota` (`avaliacao`, `parametro`, `nota`) VALUES
-(3, 1, 5),
-(3, 2, 4),
-(3, 3, 3),
-(3, 4, 4),
-(3, 5, 3),
-(4, 1, 3),
-(4, 2, 2),
-(4, 3, 1),
-(4, 4, 3),
-(4, 5, 2),
-(1, 16, 2),
-(1, 17, 3),
-(1, 18, 1),
-(1, 19, 3),
-(1, 20, 2),
-(1, 21, 2),
-(1, 22, 3),
-(1, 23, 2),
-(1, 24, 1),
-(1, 25, 2),
-(1, 26, 3),
-(1, 27, 1),
-(1, 28, 2),
-(1, 29, 3),
-(1, 30, 2),
-(1, 31, 3),
-(1, 32, 2),
-(1, 33, 1),
-(1, 34, 1),
-(1, 35, 3),
-(1, 36, 2),
-(1, 37, 2),
-(1, 38, 4),
-(2, 16, 3),
-(2, 17, 4),
-(2, 18, 5),
-(2, 19, 3),
-(2, 20, 3),
-(2, 21, 2),
-(2, 22, 4),
-(2, 23, 2),
-(2, 24, 4),
-(2, 25, 4),
-(2, 26, 3),
-(2, 27, 3),
-(2, 28, 5),
-(2, 29, 3),
-(2, 30, 3),
-(2, 31, 4),
-(2, 32, 4),
-(2, 33, 4),
-(2, 34, 3),
-(2, 35, 4),
-(2, 36, 5),
-(2, 37, 5),
-(2, 38, 5);
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `Parametro`
---
-
-CREATE TABLE `Parametro` (
-  `id` int(11) NOT NULL,
-  `nivel` varchar(16) NOT NULL,
-  `velocidade` varchar(16) NOT NULL,
-  `quesito` varchar(20) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
 -- Despejando dados para a tabela `Parametro`
---
-
 INSERT INTO `Parametro` (`id`, `nivel`, `velocidade`, `quesito`) VALUES
 (1, 'EstakaZero', 'Devagar', 'Condução/Resposta'),
 (2, 'EstakaZero', 'Devagar', 'Abraço'),
@@ -255,92 +221,71 @@ INSERT INTO `Parametro` (`id`, `nivel`, `velocidade`, `quesito`) VALUES
 (95, 'Dominguinhos', 'Arrasta-pé', 'Repertório'),
 (96, 'Dominguinhos', 'Arrasta-pé', 'Agilidade');
 
--- --------------------------------------------------------
+-- Despejando dados para a tabela `Avaliacao`
+INSERT INTO `Avaliacao` (`id`, `exame`, `papel`, `nivel`, `aluno`, `professor`, `observacao`, `status`) VALUES
+(1, '2023-05-01', 'Condutor', 'Bicho de Pé', 8, 2, 'Precisa melhorar muito', 'Reprovado'),
+(3, '2023-05-15', 'Condutor', 'EstakaZero', 9, 2, 'Corrigir ritmo', 'Aprovado'),
+(2, '2023-05-15', 'Condutor', 'Bicho de Pé', 8, 2, 'Parabéns e bem-vindo a nova turma', 'Aprovado'),
+(4, '2023-05-15', 'Conduzido', 'EstakaZero', 7, 2, 'Pulando muito', 'Reprovado');
 
---
--- Estrutura para tabela `Usuario`
---
+-- Despejando dados para a tabela `Nota`
+INSERT INTO `Nota` (`avaliacao`, `parametro`, `nota`) VALUES
+(3, 1, 5),
+(3, 2, 4),
+(3, 3, 3),
+(3, 4, 4),
+(3, 5, 3),
+(4, 1, 3),
+(4, 2, 2),
+(4, 3, 1),
+(4, 4, 3),
+(4, 5, 2),
+(1, 16, 2),
+(1, 17, 3),
+(1, 18, 1),
+(1, 19, 3),
+(1, 20, 2),
+(1, 21, 2),
+(1, 22, 3),
+(1, 23, 2),
+(1, 24, 1),
+(1, 25, 2),
+(1, 26, 3),
+(1, 27, 1),
+(1, 28, 2),
+(1, 29, 3),
+(1, 30, 2),
+(1, 31, 3),
+(1, 32, 2),
+(1, 33, 1),
+(1, 34, 1),
+(1, 35, 3),
+(1, 36, 2),
+(1, 37, 2),
+(1, 38, 4),
+(2, 16, 3),
+(2, 17, 4),
+(2, 18, 5),
+(2, 19, 3),
+(2, 20, 3),
+(2, 21, 2),
+(2, 22, 4),
+(2, 23, 2),
+(2, 24, 4),
+(2, 25, 4),
+(2, 26, 3),
+(2, 27, 3),
+(2, 28, 5),
+(2, 29, 3),
+(2, 30, 3),
+(2, 31, 4),
+(2, 32, 4),
+(2, 33, 4),
+(2, 34, 3),
+(2, 35, 4),
+(2, 36, 5),
+(2, 37, 5),
+(2, 38, 5);
 
-CREATE TABLE `Usuario` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(64) NOT NULL,
-  `email` varchar(64) NOT NULL,
-  `cpf` char(11) DEFAULT NULL,
-  `dataNascimento` date DEFAULT NULL,
-  `telefone` char(11) DEFAULT NULL,
-  `endereco` varchar(256) DEFAULT NULL,
-  `nivelCondutor` varchar(16) DEFAULT NULL,
-  `nivelConduzido` varchar(16) DEFAULT NULL,
-  `tipo` varchar(16) NOT NULL,
-  `estaAtivo` tinyint(1) NOT NULL,
-  `senha` char(32) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Despejando dados para a tabela `Usuario`
---
-
-INSERT INTO `Usuario` (`id`, `nome`, `email`, `cpf`, `dataNascimento`, `telefone`, `endereco`, `nivelCondutor`, `nivelConduzido`, `tipo`, `estaAtivo`, `senha`) VALUES
-(2, 'JoÃ£o Pedro Lessa', 'jp_aconchego@gmail.com', NULL, NULL, NULL, NULL, 'Luiz Gonzaga', 'Dominguinhos', 'Professor', 1, '81dc9bdb52d04dc20036dbd8313ed055'),
-(3, 'Administrador', 'aconchegodance@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, 'Admin', 1, '81dc9bdb52d04dc20036dbd8313ed055'),
-(4, 'Leonardo Fernandes', 'leotonageral@gmail.com', NULL, NULL, NULL, NULL, 'Bicho de PÃ©', 'EstakaZero', 'Aluno', 1, '81dc9bdb52d04dc20036dbd8313ed055'),
-(6, 'Lara Vieira', 'lavie@gmail.com', NULL, NULL, NULL, NULL, 'Dominguinhos', 'Luiz Gonzaga', 'Professor', 1, '81dc9bdb52d04dc20036dbd8313ed055'),
-(9, 'GildeÃ£o PirraÃ§a', 'gillpicarra@gmail.com', '12345678912', NULL, NULL, 'Rua A, Bairro Boa Vista', 'Bicho de PÃ©', 'EstakaZero', 'Aluno', 0, '81dc9bdb52d04dc20036dbd8313ed055'),
-(8, 'ClÃ¡udio Rodolfo S. de Oliveira', 'claudio.ifbavc@gmail.com', NULL, '1983-12-11', '77999913679', NULL, 'Virgulino', 'EstakaZero', 'Aluno', 1, '81dc9bdb52d04dc20036dbd8313ed055');
-
---
--- Índices para tabelas despejadas
---
-
---
--- Índices de tabela `Avaliacao`
---
-ALTER TABLE `Avaliacao`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `aluno` (`aluno`),
-  ADD KEY `professor` (`professor`);
-
---
--- Índices de tabela `Exame`
---
-ALTER TABLE `Exame`
-  ADD PRIMARY KEY (`data`);
-
---
--- Índices de tabela `Parametro`
---
-ALTER TABLE `Parametro`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `Usuario`
---
-ALTER TABLE `Usuario`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT para tabelas despejadas
---
-
---
--- AUTO_INCREMENT de tabela `Avaliacao`
---
-ALTER TABLE `Avaliacao`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
--- AUTO_INCREMENT de tabela `Parametro`
---
-ALTER TABLE `Parametro`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
-
---
--- AUTO_INCREMENT de tabela `Usuario`
---
-ALTER TABLE `Usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+-- Salvando Informacões
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
