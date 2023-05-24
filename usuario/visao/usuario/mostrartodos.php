@@ -15,8 +15,12 @@
     <script src="js/script.js"></script>        
   </head> 
   <body>
-    <?php
+    <?php        
+      require_once '../../entidades/Usuario.php' ;
       session_start();
+      $user = unserialize($_SESSION['login']);
+      if($user) {   
+        if ($user->getTipo() === "Admin")  { //posso mostrar a página
     ?>
     <div class="container">
     <br><br>
@@ -29,8 +33,7 @@
         <th>Tipo</th>
         <th>Ações</th>
       </tr>
-      <?php
-        require_once '../../entidades/Usuario.php' ;        
+      <?php        
         $array = unserialize($_SESSION['array']);
         session_destroy();
         foreach($array as $item) {
@@ -53,6 +56,15 @@
         <input type="hidden" name="acao" id="acao">
         <input type="hidden" name="id" id="id">
       </form>
-    </div>
+    </div>       
+    <?php    
+        } else { //usuario nao autorizado
+          header("Location: proibido.php");
+        }
+      
+      } else { //redireciona pra tela de login
+        header("Location: autenticacao.php");
+      }
+    ?>
   </body>
 </html>

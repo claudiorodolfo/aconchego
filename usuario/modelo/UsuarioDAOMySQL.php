@@ -27,6 +27,32 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 		$this->conexao = self::$mysqlDB->getConexao();
 	}
 
+	public function dataColocaMascara($data) {
+		$data = preg_replace("/\D/", '', $data);
+		return preg_replace("/(\d{4})(\d{2})(\d{2})/", "\$3/\$2/\$1", $data);
+	}
+
+	public function dataRemoveMascara($data) {
+		$data = preg_replace("/\D/", '', $data);
+		return preg_replace("/(\d{2})(\d{2})(\d{4})/", "\$3-\$2-\$1", $data);
+	}
+
+	public function cpfColocaMascara($cpf) {
+		return preg_replace("/(\d{3})(\d{3})(\d{3})(\d{2})/", "\$1.\$2.\$3-\$4", $cpf);
+	}
+
+	public function cpfRemoveMascara($cpf) {
+		return preg_replace("/\D/", '', $cpf);;
+	}
+
+	public function telefoneColocaMascara($telefone) {
+		return preg_replace("/(\d{2})(\d{1})(\d{4})(\d{4})/", "(\$1) \$2 \$3-\$4", $telefone);
+	}
+
+	public function telefoneRemoveMascara($telefone) {
+		return preg_replace("/\D/", '', $telefone);
+	}
+
 	/**
 	* Autentica um Usuario  no banco de dados MySQL
 	* @param Usuario $usuario objeto POJO de uma Usuario
@@ -53,6 +79,10 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 			$usuario->setTipo($linha['tipo']);
 			$usuario->setEstaAtivo($linha['estaAtivo']);
 			$usuario->setFoto($linha['id'] . ".jpg");
+
+			$usuario->setCpf($this->cpfColocaMascara($item->getCpf()));
+			$usuario->setTelefone($this->telefoneColocaMascara($item->getTelefone()));
+			$usuario->setDataNascimento($this->dataColocaMascara($item->getDataNascimento()));
 		}	
 		return $usuario;
 	}
@@ -63,6 +93,11 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 	* @return void
 	*/
 	public function criar($item) {
+		$item->setCpf($this->cpfRemoveMascara($item->getCpf()));
+		$item->setTelefone($this->telefoneRemoveMascara($item->getTelefone()));
+		$item->setDataNascimento($this->dataRemoveMascara($item->getDataNascimento()));
+		$item->setSenha(md5($item->getSenha()));
+
 		/** @var string $sql contém a instrução SQL a ser executada no BD */
 		$sql = "INSERT INTO Usuario (nome, email, cpf, dataNascimento, telefone, endereco, nivelCondutor, nivelConduzido, tipo, estaAtivo, senha) values (" .
 				"\"{$item->getNome()}\"," .
@@ -75,7 +110,7 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 				"\"{$item->getNivelConduzido()}\"," .
 				"\"{$item->getTipo()}\"," .
 				"{$item->getEstaAtivo()}," .
-				"\"". md5($item->getSenha()). "\"" .
+				"\"{$item->getSenha()}\"" .
 			")";
 		//print $sql;
 		mysqli_query($this->conexao, $sql);
@@ -99,6 +134,11 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 	* @return void
 	*/	
 	public function atualizar($item) {
+		$item->setCpf($this->cpfRemoveMascara($item->getCpf()));
+		$item->setTelefone($this->telefoneRemoveMascara($item->getTelefone()));
+		$item->setDataNascimento($this->dataRemoveMascara($item->getDataNascimento()));
+		//$item->setSenha(md5($item->getSenha()));
+
 		/** @var string $sql contém a instrução SQL a ser executada no BD */
 		$sql = "UPDATE Usuario SET " .
 		"nome = \"{$item->getNome()}\"," . 
@@ -110,8 +150,8 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 		"nivelCondutor = \"{$item->getNivelCondutor()}\"," .
 		"nivelConduzido = \"{$item->getNivelConduzido()}\", " .
 		"tipo = \"{$item->getTipo()}\", " .		
-		"estaAtivo = {$item->getEstaAtivo()}, " .	
-		"senha = \"". md5($item->getSenha()). "\" " .		      
+		"estaAtivo = {$item->getEstaAtivo()} " .	
+		//"senha = \"{$item->getSenha()). "\" " .		      
 		"WHERE id = {$item->getId()}";
 		//print $sql;
 		mysqli_query($this->conexao, $sql);
@@ -143,6 +183,10 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 			$usuario->setTipo($linha['tipo']);
 			$usuario->setEstaAtivo($linha['estaAtivo']);
 			$usuario->setFoto($linha['id'] . ".jpg");
+
+			$usuario->setCpf($this->cpfColocaMascara($usuario->getCpf()));
+			$usuario->setDataNascimento($this->dataColocaMascara($usuario->getDataNascimento()));
+			$usuario->setTelefone($this->telefoneColocaMascara($usuario->getTelefone()));
 		}	
 		return $usuario;
 	}	
@@ -168,7 +212,7 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 			$item = new Usuario();
 			$item->setId($linha['id']);
 			$item->setNome($linha['nome']);           
-			$item->setTipo($linha['tipo'] ?? "");
+			$item->setTipo($linha['tipo']);
 			$array[$i] = $item;		
 		}
 		return $array;

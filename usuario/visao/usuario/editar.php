@@ -125,7 +125,7 @@
         </div>
         <div class="form-group">
           <label for="esta_ativo">Ativo</label>
-          <select class="form-control" id="ativo" name="atibo">
+          <select class="form-control" id="esta_ativo" name="esta_ativo">
             <option value="0" <?php echo ($item->getEstaAtivo() == '0') ? 'selected':''; ?>>Não</option>
             <option value="1" <?php echo ($item->getEstaAtivo() == '1') ? 'selected':''; ?>>Sim</option>
           </select>
