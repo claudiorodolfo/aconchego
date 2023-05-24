@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 23/05/2023 às 18:01
+-- Tempo de geração: 23/05/2023 às 23:37
 -- Versão do servidor: 5.6.51-cll-lve
 -- Versão do PHP: 8.1.16
 
@@ -50,18 +50,18 @@ INSERT INTO `Avaliacao` (`id`, `exame`, `nivel`, `aluno`, `professor`, `observac
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `exame`
+-- Estrutura para tabela `Exame`
 --
 
-CREATE TABLE `exame` (
+CREATE TABLE `Exame` (
   `data` date NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Despejando dados para a tabela `exame`
+-- Despejando dados para a tabela `Exame`
 --
 
-INSERT INTO `exame` (`data`) VALUES
+INSERT INTO `Exame` (`data`) VALUES
 ('2023-03-07'),
 ('2023-05-01'),
 ('2023-05-15');
@@ -69,20 +69,20 @@ INSERT INTO `exame` (`data`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `Notas`
+-- Estrutura para tabela `Nota`
 --
 
-CREATE TABLE `Notas` (
+CREATE TABLE `Nota` (
   `avaliacao` int(11) NOT NULL,
   `parametro` int(11) NOT NULL,
   `nota` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Despejando dados para a tabela `Notas`
+-- Despejando dados para a tabela `Nota`
 --
 
-INSERT INTO `Notas` (`avaliacao`, `parametro`, `nota`) VALUES
+INSERT INTO `Nota` (`avaliacao`, `parametro`, `nota`) VALUES
 (3, 1, 5),
 (3, 2, 4),
 (3, 3, 3),
@@ -301,9 +301,9 @@ ALTER TABLE `Avaliacao`
   ADD KEY `professor` (`professor`);
 
 --
--- Índices de tabela `exame`
+-- Índices de tabela `Exame`
 --
-ALTER TABLE `exame`
+ALTER TABLE `Exame`
   ADD PRIMARY KEY (`data`);
 
 --

@@ -25,7 +25,10 @@
           session_destroy();
         }
       ?>
-      <form method="post" action="../../controlador/rotasUsuario.php">
+      <form
+      enctype="form-data"
+      action="../../controlador/rotasUsuario.php"
+      method="post">
         <input type="hidden" name="acao" value="salvar">
         <input type="hidden" name="id" id="id" value="<?php echo $item->getId() ?>">
 				<h1>Edição de Usuários</h1>
