@@ -16,8 +16,8 @@
             <form 
               id="form"
               class="px-4 py-3" 
-              method="../../controlador/rotasUsuario.php" 
-              action="post">
+              action="../../controlador/rotasUsuario.php"
+              method="post">
               <input type="hidden" name="acao" id="acao">
 
               <div class="mb-3">
@@ -46,7 +46,7 @@
                   class="form-check-input" 
                   id="dropdownCheck">
                   <label class="form-check-label" for="dropdownCheck">
-                    Lembre-me
+                    Lembrar-me
                   </label>
                 </div>
               </div>
