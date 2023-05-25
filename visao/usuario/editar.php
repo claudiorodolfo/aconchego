@@ -139,7 +139,7 @@
         </div>                 
         <br />
         <button type="submit" class="btn btn-primary">Salvar</button>
-        <a class="btn btn-danger" href="index.php">Cancelar</a>
+        <a class="btn btn-danger" href="mostrartodos.php">Cancelar</a>
       </form>
     </div>
   </body>

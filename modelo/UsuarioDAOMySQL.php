@@ -59,9 +59,9 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 			$usuario->setEstaAtivo($linha['estaAtivo']);
 			$usuario->setFoto($linha['id'] . ".jpg");
 
-			$usuario->setCpf($this->auxiliar->cpfColocaMascara($item->getCpf()));
-			$usuario->setTelefone($this->auxiliar->telefoneColocaMascara($item->getTelefone()));
-			$usuario->setDataNascimento($this->dauxiliar->ataColocaMascara($item->getDataNascimento()));
+			$usuario->setCpf($this->auxiliar->cpfColocaMascara($usuario->getCpf()));
+			$usuario->setTelefone($this->auxiliar->telefoneColocaMascara($usuario->getTelefone()));
+			$usuario->setDataNascimento($this->auxiliar->dataColocaMascara($usuario->getDataNascimento()));
 		}	
 		return $usuario;
 	}

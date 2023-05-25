@@ -19,6 +19,6 @@
       <br><br>
       <a class="btn btn-outline-primary" href="avaliacao/mostrartodos.php">Gerir Avaliações</a>
       <br><br>
-      <a class="btn btn-outline-primary" href="evento/mostrartodos.php">Gerir Eventos</a>
+      <a class="btn btn-outline-primary" href="exame/mostrartodos.php">Gerir Exames</a>
   </body>
 </html>

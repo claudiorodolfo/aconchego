@@ -33,7 +33,7 @@ if (isset($_POST['acao'])) {
                         header("Location: ../visao/avaliacao/avaliaralunos.php");
                     break;
                     case 'Aluno':
-                        header("Location: ../visao/evento/mostrareventosaluno.php");
+                        header("Location: ../visao/exame/mostrartodosaluno.php");
                     break;
                     default:
                 }
