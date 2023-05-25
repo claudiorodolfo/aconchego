@@ -13,7 +13,7 @@ require_once 'util/Auxiliar.php';
  * @author Cláudio Rodolfo S. de Oliveira
  * @version Versão Inicial May 25, 2023
  */
-class UsuarioDAOMySQL implements IUsuarioDAO {
+class AvaliacaoDAOMySQL implements IAvaliacaoDAO {
 
 	/** @var Resource $conexao é um ponteiro para um conexão com o BD MySQL */
 	private $conexao;

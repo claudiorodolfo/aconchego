@@ -39,7 +39,9 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 	*/	
 	public function autenticar($item) {
 		/** @var string $sql contém a instrução SQL a ser executada no BD */
-		$sql = "SELECT * FROM Usuario WHERE email = \"{$item->getEmail()}\" and senha = \"{$item->getSenha()}\"";
+		$sql = "SELECT * " .
+				"FROM Usuario " .
+				"WHERE email = \"{$item->getEmail()}\" and senha = \"{$item->getSenha()}\"";
 		//print $sql;
 		$usuario;
 		$dados = mysqli_query($this->conexao, $sql);
@@ -120,18 +122,18 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 
 		/** @var string $sql contém a instrução SQL a ser executada no BD */
 		$sql = "UPDATE Usuario SET " .
-		"nome = \"{$item->getNome()}\"," . 
-		"email = \"{$item->getEmail()}\"," .
-		"cpf = \"{$item->getCpf()}\"," .
-		"dataNascimento = \"{$item->getDataNascimento()}\"," .
-		"telefone = \"{$item->getTelefone()}\"," .
-		"endereco = \"{$item->getEndereco()}\"," .
-		"nivelCondutor = \"{$item->getNivelCondutor()}\"," .
-		"nivelConduzido = \"{$item->getNivelConduzido()}\", " .
-		"tipo = \"{$item->getTipo()}\", " .		
-		"estaAtivo = {$item->getEstaAtivo()} " .	
-		//"senha = \"{$item->getSenha()). "\" " .		      
-		"WHERE id = {$item->getId()}";
+				"nome = \"{$item->getNome()}\"," . 
+				"email = \"{$item->getEmail()}\"," .
+				"cpf = \"{$item->getCpf()}\"," .
+				"dataNascimento = \"{$item->getDataNascimento()}\"," .
+				"telefone = \"{$item->getTelefone()}\"," .
+				"endereco = \"{$item->getEndereco()}\"," .
+				"nivelCondutor = \"{$item->getNivelCondutor()}\"," .
+				"nivelConduzido = \"{$item->getNivelConduzido()}\", " .
+				"tipo = \"{$item->getTipo()}\", " .		
+				"estaAtivo = {$item->getEstaAtivo()} " .	
+				//"senha = \"{$item->getSenha()). "\" " .		      
+				"WHERE id = {$item->getId()}";
 		//print $sql;
 		mysqli_query($this->conexao, $sql);
 	}
@@ -143,7 +145,9 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 	*/	
 	public function buscar($item) {
 		/** @var string $sql contém a instrução SQL a ser executada no BD */
-		$sql = "SELECT id,nome,email,cpf,dataNascimento,telefone,endereco,nivelCondutor,nivelConduzido,tipo,estaAtivo FROM Usuario WHERE id = {$item->getId()}";
+		$sql = "SELECT * " .
+				"FROM Usuario " .
+				"WHERE id = {$item->getId()}";
 		//print $sql;
 		$usuario;
 		$dados = mysqli_query($this->conexao, $sql);
@@ -177,9 +181,9 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 	public function buscarTodos() {
 		/** @var string $sql contém a instrução SQL a ser executada no BD */	
 		$sql = "SELECT id, nome, tipo " .
-		"FROM Usuario " . 
-		"WHERE tipo <> 'Admin' " . 
-		"ORDER BY tipo, nome";
+				"FROM Usuario " . 
+				"WHERE tipo <> 'Admin' " . 
+				"ORDER BY tipo, nome";
 		//print $sql;
 		$dados = mysqli_query($this->conexao, $sql);
 		/** @var array é um vetor de Usuario */

@@ -27,7 +27,8 @@ CREATE TABLE IF NOT EXISTS `Usuario` (
 
 -- Estrutura para tabela `Exame`
 CREATE TABLE IF NOT EXISTS `Exame` (
-  `data` date NOT NULL
+  `data` date NOT NULL,
+  `nome` varchar(32) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- Estrutura para tabela `Parametro`
@@ -48,6 +49,7 @@ CREATE TABLE IF NOT EXISTS `Avaliacao` (
   `professor` int(11) NOT NULL,
   `observacao` varchar(255) NOT NULL,
   `status` varchar(15) NOT NULL
+  `rascunho` tinyint(1) NOT NULL,
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
@@ -116,10 +118,10 @@ INSERT INTO `Usuario` (`id`, `nome`, `email`, `cpf`, `dataNascimento`, `telefone
 (8, 'Claudio Rodolfo S. de Oliveira', 'claudio.ifbavc@gmail.com', NULL, '1983-12-11', '77999913679', '', 'Virgulino', 'EstakaZero', 'Aluno', 1, '81dc9bdb52d04dc20036dbd8313ed055');
 
 -- Despejando dados para a tabela `Exame`
-INSERT INTO `Exame` (`data`) VALUES
-('2023-03-07'),
-('2023-05-01'),
-('2023-05-15');
+INSERT INTO `Exame` (`data`,`nome`) VALUES
+('2023-03-07','Seu Luiz'),
+('2023-05-01','Seu Luiz'),
+('2023-05-15','Luizinho');
 
 -- Despejando dados para a tabela `Parametro`
 INSERT INTO `Parametro` (`id`, `nivel`, `velocidade`, `quesito`) VALUES
@@ -221,11 +223,11 @@ INSERT INTO `Parametro` (`id`, `nivel`, `velocidade`, `quesito`) VALUES
 (96, 'Dominguinhos', 'Arrasta-pé', 'Agilidade');
 
 -- Despejando dados para a tabela `Avaliacao`
-INSERT INTO `Avaliacao` (`id`, `exame`, `papel`, `nivel`, `aluno`, `professor`, `observacao`, `status`) VALUES
-(1, '2023-05-01', 'Condutor', 'Bicho de Pé', 8, 2, 'Precisa melhorar muito', 'Reprovado'),
-(3, '2023-05-15', 'Condutor', 'EstakaZero', 9, 2, 'Corrigir ritmo', 'Aprovado'),
-(2, '2023-05-15', 'Condutor', 'Bicho de Pé', 8, 2, 'Parabéns e bem-vindo a nova turma', 'Aprovado'),
-(4, '2023-05-15', 'Conduzido', 'EstakaZero', 7, 2, 'Pulando muito', 'Reprovado');
+INSERT INTO `Avaliacao` (`id`, `exame`, `papel`, `nivel`, `aluno`, `professor`, `observacao`, `status`,`rascunho`) VALUES
+(1, '2023-05-01', 'Condutor', 'Bicho de Pé', 8, 2, 'Precisa melhorar muito', 'Reprovado',0),
+(3, '2023-05-15', 'Condutor', 'EstakaZero', 9, 2, 'Corrigir ritmo', 'Aprovado',0),
+(2, '2023-05-15', 'Condutor', 'Bicho de Pé', 8, 2, 'Parabéns e bem-vindo a nova turma', 'Aprovado',0),
+(4, '2023-05-15', 'Conduzido', 'EstakaZero', 7, 2, 'Pulando muito', 'Reprovado',0);
 
 -- Despejando dados para a tabela `Nota`
 INSERT INTO `Nota` (`avaliacao`, `parametro`, `nota`) VALUES
