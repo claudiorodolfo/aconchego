@@ -15,12 +15,12 @@ require_once 'util/Auxiliar.php';
  */
 class UsuarioDAOMySQL implements IUsuarioDAO {
 
-	/** @var Auxiliar $auxiliar objeto da Classe de Métodos auxiliares */
-	private $auxiliar;
 	/** @var Resource $conexao é um ponteiro para um conexão com o BD MySQL */
 	private $conexao;
 	/** @var ConexaoMySQL $mysqlDB é uma instância da classe de manipulação da conexão com o BD */
 	private static $mysqlDB;
+	/** @var Auxiliar $auxiliar objeto da Classe de Métodos auxiliares */
+	private $auxiliar;
 
    /**
 	* Cria uma instância do banco e realiza a conexão.
@@ -28,6 +28,8 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 	public function __construct() {
 		self::$mysqlDB = ConexaoMySQL::getInstance();
 		$this->conexao = self::$mysqlDB->getConexao();
+
+		$this->auxiliar = new Auxiliar();
 	}
 
 	/**
@@ -190,7 +192,7 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 			$item->setId($linha['id']);
 			$item->setNome($linha['nome']);           
 			$item->setTipo($linha['tipo']);
-			$array[$i] = $item;		
+			$array[$i] = $item;
 		}
 		return $array;
 	}

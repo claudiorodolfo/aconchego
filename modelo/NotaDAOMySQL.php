@@ -28,13 +28,13 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 	}
 
    /**
-	* Busca uma Usuario especifica no banco de dados MySQL
-	* @param Usuario $usuario objeto POJO de uma Usuario
-	* @return Usuario
+	* Busca as Notas de uma Avaliacao especifica no banco de dados MySQL
+	* @param Avaliacao $avaliacao objeto POJO de uma Avaliacao
+	* @return Nota[]
 	*/	
 	public function buscar($avaliacao) {
 		/** @var string $sql contém a instrução SQL a ser executada no BD */
-		$sql = "SELECT velocidade, quesito, nota
+		$sql = "SELECT avaliacao, velocidade, quesito, nota
 		FROM Nota, Parametro
 		WHERE Nota.parametro = Parametro.id and avaliacao = {$avaliacao->getId()}}";
 		//print $sql;
@@ -44,6 +44,7 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 		for($i = 0; $i < $quantidade; $i++) {
 			$linha = mysqli_fetch_array($dados);
 			$nota = new Nota();
+			$nota->setAvaliacao($avaliacao->getId());
 			$nota->setVelocidade($linha['velocidade']);
 			$nota->setQuesito($linha['quesito']);
 			$nota->setNota($linha['nota']);       

@@ -24,18 +24,31 @@ if (isset($_POST['acao'])) {
             $item = $controlador->autenticar($_POST);
             if (isset($item)) {
                 $_SESSION['login'] = serialize($item);
-                header("Location: ../visao/usuario/index.php");
+                switch ($item->getTipo()) {
+                    case 'Admin':
+                        header("Location: ../visao/gerenciar.php");
+                    break;
+                    case 'Professor':
+                    case 'Monitor':
+                        header("Location: ../visao/avaliacao/avaliaralunos.php");
+                    break;
+                    case 'Aluno':
+                        header("Location: ../visao/evento/mostrareventosaluno.php");
+                    break;
+                    default:
+                }
+            //não foi autenticado com sucesso
             } else {
-                header("Location: ../visao/usuario/autenticacao.php");
+                header("Location: ../visao/index.php");
             }
             break;
         case 'salvar':
             $controlador->salvar($_POST);
-            header("Location: ../visao/usuario/index.php");
+            header("Location: ../visao/usuario/mostrartodos.php");
             break;
         case 'apagar':
             $controlador->apagar($_POST['id']);
-            header("Location: ../visao/usuario/index.php");
+            header("Location: ../visao/usuario/mostrartodos.php");
             break;
         case 'buscar_detalhe':
             $item = $controlador->buscar($_POST['id']);
