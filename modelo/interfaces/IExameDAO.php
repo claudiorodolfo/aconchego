@@ -9,7 +9,7 @@
 * @author Cláudio Rodolfo S. de Oliveira
 * @version Versão Inicial May 25, 2023
 */
-interface IAvaliacaoDAO {
+interface IExameDAO {
 
 	/**
 	* busca por um Aluno
@@ -21,5 +21,5 @@ interface IAvaliacaoDAO {
 	* busca todos os exames
 	*/
 	public function buscarTodos();
-	}
+}
 ?>

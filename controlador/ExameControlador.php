@@ -2,7 +2,7 @@
 /**
  * @package controlador
  */
-    //require_once '../entidades/Usuario.php';
+    require_once '../entidades/Usuario.php';
     require_once '../entidades/Exame.php';
 	require_once '../modelo/ExameDAOMySQL.php';
 
@@ -38,6 +38,6 @@ class ExameControlador {
 	* @return Exame[]
 	*/
     public function buscarTodos() {
-        return $this->dao->buscarTodos();
+      //  return $this->dao->buscarTodos();
     }
 }

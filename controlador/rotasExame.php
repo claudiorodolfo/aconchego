@@ -28,10 +28,10 @@ if (isset($_POST['acao'])) {
             header("Location: ../visao/exame/mostrartodosaluno.php");
             break;
         case 'buscar_todos':
-            $array = $controlador->buscarTodos();
-            $_SESSION["array_exame"] = serialize($array);        
+          //  $array = $controlador->buscarTodos();
+           // $_SESSION["array_exame"] = serialize($array);        
             //print "<script>location.href='../visao/usuario/mostrartodos.php';</script>";   
-            header("Location: ../visao/exame/mostrartodos.php");
+           // header("Location: ../visao/exame/mostrartodos.php");
             break;
         default:
     }

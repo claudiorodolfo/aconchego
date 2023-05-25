@@ -44,3 +44,4 @@ class Exame {
 		return print_r($this);
 	}
 }
+?>

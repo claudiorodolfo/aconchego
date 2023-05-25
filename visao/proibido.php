@@ -15,6 +15,5 @@
   </head> 
   <body">
    <h1>Acesso não autorizado</h1>
-   <a>Voltar</a>
   </body>
 </html>

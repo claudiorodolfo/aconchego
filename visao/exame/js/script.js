@@ -1,4 +1,4 @@
-function buscarPorAluno(id) {
+function buscarPorAluno() {
     $("#acao").val('buscar_por_aluno');
     $("#form").submit();
 }

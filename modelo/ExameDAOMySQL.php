@@ -2,6 +2,7 @@
 /**
  * @package model
  */
+require_once '../entidades/Usuario.php';
 require_once '../entidades/Exame.php';
 require_once 'interfaces/IExameDAO.php';
 require_once 'conexoes/ConexaoMySQL.php';
@@ -38,7 +39,7 @@ class ExameDAOMySQL implements IExameDAO {
 	* @return Exame[]
 	*/	
 	public function buscarPorAluno($aluno) {
-        /** @var string $sql contém a instrução SQL a ser executada no BD */	
+		/** @var string $sql contém a instrução SQL a ser executada no BD */	
         $sql = "SELECT exame, papel " .
                 "FROM Usuario, Avaliacao " .
                 "WHERE Usuario.id = Avaliacao.aluno and Avaliacao.rascunho = 0 and Usuario.id = {$aluno->getId()} " .
@@ -54,7 +55,10 @@ class ExameDAOMySQL implements IExameDAO {
 			$item = new Exame();
 			$item->setIdAluno($aluno->getId());
 			$item->setExame($linha['exame']);
-			$item->setPapel($linha['papel']);           
+			$item->setPapel($linha['papel']); 
+			
+			$item->setExame($this->auxiliar->dataColocaMascara($item->getExame()));
+			
 			$array[$i] = $item;
 		}
 		return $array;

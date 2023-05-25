@@ -13,19 +13,16 @@
     <title>Exames do Aluno</title>    
     <script src="js/script.js"></script>        
   </head> 
-  <body onload="buscarTodos()">
+  <body onload="buscarPorAluno()">
   <?php        
-      require_once '../../entidades/Exame.php' ;
+      require_once '../../entidades/Exame.php' ;     
       session_start();
   ?>    
   <div class="container">
     <br><br>
-    <a class="btn btn-outline-primary" href="editar.php">Novo Usuário</a>
-    <br><br>
     <table class='table table-striped table-bordered'>
       <tr>
-        <th>Exame</th>
-        <th>Papel</th>
+        <th>Exame - Função</th>
       </tr>
       <?php        
         $array = unserialize($_SESSION['array_exame']);
@@ -33,8 +30,7 @@
         foreach($array as $item) {
       ?>
           <tr>
-            <td><?php echo $item->getExame(); ?></td>
-            <td><?php echo $item->getPapel(); ?></td>
+            <td><?php echo $item->getExame() . " - " . $item->getPapel(); ?></td>
           </tr>
       <?php
         }
@@ -42,7 +38,6 @@
       </table>
       <form id="form" method="post" action="../../controlador/rotasExame.php">                                
         <input type="hidden" name="acao" id="acao">
-        <input type="hidden" name="id" id="id">
       </form>
     </div>       
   </body>
