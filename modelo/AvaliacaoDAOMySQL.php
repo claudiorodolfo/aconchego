@@ -35,12 +35,14 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 	* @param Avaliacao $avaliacao objeto POJO de uma Avaliacao
 	* @return Avaliacao
 	*/	
-	public function buscar($item) {
+	public function buscar($avaliacao) {
 		/** @var string $sql contém a instrução SQL a ser executada no BD */
 		$sql = "SELECT Avaliacao.id, Avaliacao.aluno as idAluno, aluno.nome, professor.nome, Avaliacao.nivel
 		FROM Avaliacao, Usuario aluno, Usuario professor
 		WHERE Avaliacao.aluno = aluno.id and Avaliacao.professor = professor.id and
-		idAluno = {$item->getIdAluno()} and Avaliacao.exame = \"{$item->getExame()}\" and papel = \"{$item->getPapel()}\"";		
+		idAluno = {$avaliacao->getIdAluno()} and 
+			Avaliacao.exame = \"{$avaliacao->getExame()}\" and 
+			papel = \"{$avaliacao->getPapel()}\"";	
 		//print $sql;
 		$avaliacao;
 		$dados = mysqli_query($this->conexao, $sql);
