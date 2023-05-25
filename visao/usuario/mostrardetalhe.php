@@ -25,37 +25,104 @@
         $item = unserialize($_SESSION['usuario']);
         //session_destroy();
       ?>
+      <a class="btn btn-outline-primary" href="index.php">Voltar</a>
+      <br><br>
       <table class='table table-striped table-bordered'>
         <tr>
           <th>Id</th>
-          <th>Nome</th>
-          <th>E-mail</th>
-          <th>CPF</th>
-          <th>Data de Nascimento</th>
-          <th>Telefone</th>
-          <th>Endereço</th>
-          <th>Nível Condutor(a)</th>
-          <th>Nível Conduzido(a)</th>
-          <th>Tipo</th>
-          <th>Foto</th>
-          <th>Ativo</th>          
         </tr>
         <tr>             
           <td><?php echo $item->getId() ?></td>
-          <td><?php echo $item->getNome() ?></td>
-          <td><?php echo $item->getEmail() ?></td>          
-          <td><?php echo $item->getCpf() ?></td>
-          <td><?php echo $item->getDataNascimento() ?></td>
-          <td><?php echo $item->getTelefone() ?></td>
-          <td><?php echo $item->getEndereco() ?></td>     
-          <td><?php echo $item->getNivelCondutor() ?></td>                                   
-          <td><?php echo $item->getNivelConduzido() ?></td>
-          <td><?php echo $item->getTipo() ?></td>         
-          <td><?php echo $item->getFoto() ?></td>  
-          <td><?php echo ($item->getEstaAtivo() == '0') ? 'Não': 'Sim'; ?></td>          
-        </tr>
+        </tr>          
       </table>
-      <a class="btn btn-outline-primary" href="index.php">Voltar</a>
+      <table class='table table-striped table-bordered'>
+        <tr>
+          <th>Nome</th>
+        </tr>
+        <tr>             
+          <td><?php echo $item->getNome() ?></td>
+        </tr>          
+      </table>
+      <table class='table table-striped table-bordered'>
+        <tr>
+          <th>Email</th>
+        </tr>
+        <tr>             
+          <td><?php echo $item->getEmail() ?></td>
+        </tr>          
+      </table>
+      <table class='table table-striped table-bordered'>
+        <tr>
+          <th>CPF</th>
+        </tr>
+        <tr>             
+          <td><?php echo $item->getCpf() ?></td>
+        </tr>          
+      </table>
+      <table class='table table-striped table-bordered'>
+        <tr>
+          <th>Data de Nascimento</th>
+        </tr>
+        <tr>             
+          <td><?php echo $item->getDataNascimento() ?></td>
+        </tr>          
+      </table>
+      <table class='table table-striped table-bordered'>
+        <tr>
+          <th>Telefone</th>
+        </tr>
+        <tr>             
+          <td><?php echo $item->getTelefone() ?></td>
+        </tr>          
+      </table>
+            <table class='table table-striped table-bordered'>
+        <tr>
+          <th>Endereço</th>
+        </tr>
+        <tr>             
+          <td><?php echo $item->getEndereco() ?></td>
+        </tr>          
+      </table>
+            <table class='table table-striped table-bordered'>
+        <tr>
+          <th>Nível Condutor(a)</th>
+        </tr>
+        <tr>             
+          <td><?php echo $item->getNivelCondutor() ?></td>
+        </tr>          
+      </table>
+            <table class='table table-striped table-bordered'>
+        <tr>
+          <th>Nível Conduzido(a)</th>
+        </tr>
+        <tr>             
+          <td><?php echo $item->getNivelConduzido() ?></td>
+        </tr>          
+      </table>
+            <table class='table table-striped table-bordered'>
+        <tr>
+          <th>Tipo</th>
+        </tr>
+        <tr>             
+          <td><?php echo $item->getTipo() ?></td>
+        </tr>          
+      </table>
+      <table class='table table-striped table-bordered'>
+        <tr>
+          <th>Foto</th>
+        </tr>
+        <tr>             
+          <td><?php echo $item->getFoto() ?></td>
+        </tr>          
+      </table>
+      <table class='table table-striped table-bordered'>
+        <tr>
+          <th>Ativo</th>
+        </tr>
+        <tr>             
+          <td><?php echo ($item->getEstaAtivo() == '0') ? 'Não': 'Sim'; ?></td>
+        </tr>          
+      </table>      
     </div>
   </body>
 </html>
