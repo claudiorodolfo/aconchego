@@ -2,10 +2,9 @@
 /**
  * @package model
  */
-require_once '../entidades/Usuario.php';
-require_once 'interfaces/IUsuarioDAO.php';
+require_once '../entidades/Nota.php';
+require_once 'interfaces/INotaDAO.php';
 require_once 'conexoes/ConexaoMySQL.php';
-require_once 'util/Auxiliar.php';
 
 /**
  * Classe com a implementação das operações que podem ser realizadas no BD
@@ -15,8 +14,6 @@ require_once 'util/Auxiliar.php';
  */
 class UsuarioDAOMySQL implements IUsuarioDAO {
 
-	/** @var Auxiliar $auxiliar objeto da Classe de Métodos auxiliares */
-	private $auxiliar;
 	/** @var Resource $conexao é um ponteiro para um conexão com o BD MySQL */
 	private $conexao;
 	/** @var ConexaoMySQL $mysqlDB é uma instância da classe de manipulação da conexão com o BD */
@@ -28,6 +25,32 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 	public function __construct() {
 		self::$mysqlDB = ConexaoMySQL::getInstance();
 		$this->conexao = self::$mysqlDB->getConexao();
+	}
+
+	public function dataColocaMascara($data) {
+		$data = preg_replace("/\D/", '', $data);
+		return preg_replace("/(\d{4})(\d{2})(\d{2})/", "\$3/\$2/\$1", $data);
+	}
+
+	public function dataRemoveMascara($data) {
+		$data = preg_replace("/\D/", '', $data);
+		return preg_replace("/(\d{2})(\d{2})(\d{4})/", "\$3-\$2-\$1", $data);
+	}
+
+	public function cpfColocaMascara($cpf) {
+		return preg_replace("/(\d{3})(\d{3})(\d{3})(\d{2})/", "\$1.\$2.\$3-\$4", $cpf);
+	}
+
+	public function cpfRemoveMascara($cpf) {
+		return preg_replace("/\D/", '', $cpf);;
+	}
+
+	public function telefoneColocaMascara($telefone) {
+		return preg_replace("/(\d{2})(\d{1})(\d{4})(\d{4})/", "(\$1) \$2 \$3-\$4", $telefone);
+	}
+
+	public function telefoneRemoveMascara($telefone) {
+		return preg_replace("/\D/", '', $telefone);
 	}
 
 	/**
@@ -57,9 +80,9 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 			$usuario->setEstaAtivo($linha['estaAtivo']);
 			$usuario->setFoto($linha['id'] . ".jpg");
 
-			$usuario->setCpf($this->auxiliar->cpfColocaMascara($item->getCpf()));
-			$usuario->setTelefone($this->auxiliar->telefoneColocaMascara($item->getTelefone()));
-			$usuario->setDataNascimento($this->dauxiliar->ataColocaMascara($item->getDataNascimento()));
+			$usuario->setCpf($this->cpfColocaMascara($item->getCpf()));
+			$usuario->setTelefone($this->telefoneColocaMascara($item->getTelefone()));
+			$usuario->setDataNascimento($this->dataColocaMascara($item->getDataNascimento()));
 		}	
 		return $usuario;
 	}
@@ -70,9 +93,9 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 	* @return void
 	*/
 	public function criar($item) {
-		$item->setCpf($this->auxiliar->cpfRemoveMascara($item->getCpf()));
-		$item->setTelefone($this->auxiliar->telefoneRemoveMascara($item->getTelefone()));
-		$item->setDataNascimento($this->auxiliar->dataRemoveMascara($item->getDataNascimento()));
+		$item->setCpf($this->cpfRemoveMascara($item->getCpf()));
+		$item->setTelefone($this->telefoneRemoveMascara($item->getTelefone()));
+		$item->setDataNascimento($this->dataRemoveMascara($item->getDataNascimento()));
 		$item->setSenha(md5($item->getSenha()));
 
 		/** @var string $sql contém a instrução SQL a ser executada no BD */
@@ -111,9 +134,9 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 	* @return void
 	*/	
 	public function atualizar($item) {
-		$item->setCpf($this->auxiliar->cpfRemoveMascara($item->getCpf()));
-		$item->setTelefone($this->auxiliar->telefoneRemoveMascara($item->getTelefone()));
-		$item->setDataNascimento($this->auxiliar->dataRemoveMascara($item->getDataNascimento()));
+		$item->setCpf($this->cpfRemoveMascara($item->getCpf()));
+		$item->setTelefone($this->telefoneRemoveMascara($item->getTelefone()));
+		$item->setDataNascimento($this->dataRemoveMascara($item->getDataNascimento()));
 		//$item->setSenha(md5($item->getSenha()));
 
 		/** @var string $sql contém a instrução SQL a ser executada no BD */
@@ -161,9 +184,9 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 			$usuario->setEstaAtivo($linha['estaAtivo']);
 			$usuario->setFoto($linha['id'] . ".jpg");
 
-			$usuario->setCpf($this->auxiliar->cpfColocaMascara($usuario->getCpf()));
-			$usuario->setDataNascimento($this->auxiliar->dataColocaMascara($usuario->getDataNascimento()));
-			$usuario->setTelefone($this->auxiliar->telefoneColocaMascara($usuario->getTelefone()));
+			$usuario->setCpf($this->cpfColocaMascara($usuario->getCpf()));
+			$usuario->setDataNascimento($this->dataColocaMascara($usuario->getDataNascimento()));
+			$usuario->setTelefone($this->telefoneColocaMascara($usuario->getTelefone()));
 		}	
 		return $usuario;
 	}	
