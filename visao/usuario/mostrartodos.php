@@ -22,7 +22,7 @@
         if ($user->getTipo() === "Admin")  { //posso mostrar a página
     ?>
     <div class="container">
-    <br><br>
+    <br>
     <a class="btn btn-outline-primary" href="editar.php">Novo Usuário</a>
     <br><br>
     <table class='table table-striped table-bordered'>

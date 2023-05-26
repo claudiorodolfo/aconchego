@@ -13,14 +13,16 @@
     <title>Opções de Gestão</title>          
   </head> 
   <body>
-    <br><br>
+  <br><br>
+  <a class="btn btn-outline-primary" href="#">Voltar</a>
+    <br>
     <div style="text-align: center" class="alert alert-success" role="alert">
         APROVADO
       </div>
-      <br>
+     <!-- <br>
       <div style="text-align: center" class="alert alert-danger" role="alert">
         REPROVADO
-      </div>
+      </div>-->
       <br>
     <table class="table table-bordered align-middle">
         <tr>
@@ -31,18 +33,18 @@
             <td style="text-align: center" colspan="3">DATA</td>         
         </tr> 
         <tr>
-            <td style="text-align: center" colspan="3">  /  /  </td>
+            <td style="text-align: center" colspan="3">03/02/2021</td>
         </tr>
         <tr>
             <td colspan="8"></td>
         </tr>
         <tr>
             <td colspan="2">Nome</td>
-            <td colspan="6"></td>
+            <td colspan="6">Cláudio Rodolfo Sousa de Oliveira</td>
         </tr>
         <tr>
             <td colspan="2">Examinador</td>
-            <td colspan="6"></td>
+            <td colspan="6">Angélica Menezes</td>
         </tr>       
         <tr>
             <td colspan="8"></td>
@@ -95,5 +97,12 @@
             <td style="text-align: center">5</td>
         </tr> 
     </table>
+    <div class="card">
+      <div class="card-body">    
+        <p class="card-text">
+            Boa Marcação. Melhorar troca de lado. Braço Balançando. Bem vindo ao BP!.
+        </p>    
+      </div>
+    </div>
   </body>
 </html>

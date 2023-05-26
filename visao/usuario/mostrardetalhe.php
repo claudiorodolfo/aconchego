@@ -24,6 +24,7 @@
         $item = unserialize($_SESSION['usuario']);
         //session_destroy();
       ?>
+      <br>      
       <a class="btn btn-outline-primary" href="mostrartodos.php">Voltar</a>
       <br><br>
       <table class='table table-striped table-bordered'>
