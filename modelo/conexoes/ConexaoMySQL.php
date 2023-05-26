@@ -20,15 +20,9 @@ class ConexaoMySQL {
 	* Cria uma conexão específica com um BD MySQL
 	*/
     private function __construct() {
-		header("Content-Type: application/json; charset=UTF-8");
-		$data = file_get_contents("bd.json");
-		//$json = json_decode($data);
-		//print $json->hostname;
-		//print $json->username;
-		//print $json->password;
-		//print $json->schema;
-		//$this->conexao = mysqli_connect($data->hostname,$data->username,$data->password,$data->schema);
-		$this->conexao = mysqli_connect("localhost","claudior_claudio","Claudio2019","claudior_escola");
+		$dados = file_get_contents("../modelo/conexoes/bd.json");
+		 $json = json_decode($dados);
+		$this->conexao = mysqli_connect($json->hostname,$json->username,$json->password,$json->schema);
 	}
 	
    /**
