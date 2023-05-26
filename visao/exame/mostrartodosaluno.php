@@ -13,7 +13,7 @@
     <title>Exames do Aluno</title>    
     <script src="js/script.js"></script>        
   </head> 
-  <body>
+  <body onload="buscarPorAluno()">
   <?php        
       require_once '../../entidades/Exame.php' ;     
       session_start();
@@ -26,8 +26,8 @@
       </tr>
       <?php        
         $array = unserialize($_SESSION['array_exame']);
-        if (!isset($array))
-          print "<script>buscarPorAluno()</script>";
+        // if (!isset($array))
+        //   print "<script>buscarPorAluno()</script>";
         //session_destroy();
         foreach($array as $item) {
       ?>

@@ -14,14 +14,14 @@
   </head> 
   <body>
   <br>
-  <a class="btn btn-outline-primary" href="#">Voltar</a>
+  <a class="btn btn-outline-primary" href="../exame/mostrartodosaluno.php">Voltar</a>
     <br><br>
     <div style="text-align: center" class="alert alert-success" role="alert">
         APROVADO
       </div>
      <!-- <br>
-      <div style="text-align: center" class="alert alert-danger" role="alert">
-        REPROVADO
+      <div style="text-align: center" class="alert alert-warning" role="alert">
+        Faltou pouco. Não desista!
       </div>-->
       <br>
     <table class="table table-bordered align-middle">

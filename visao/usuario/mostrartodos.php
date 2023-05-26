@@ -13,7 +13,7 @@
     <title>Controle de Usuários</title>    
     <script src="js/script.js"></script>        
   </head> 
-  <body>
+  <body onload="buscarTodos()">
     <?php        
       require_once '../../entidades/Usuario.php' ;
       session_start();
@@ -33,9 +33,9 @@
         <th>Ações</th>
       </tr>
       <?php        
-        $array = unserialize($_SESSION['array']);
-        if (!isset($array))
-          print "<script>buscarTodos()</script>";
+        $array = unserialize($_SESSION['array_usuario']);
+        // if (!isset($array))
+        //   print "<script>buscarTodos()</script>";
         //session_destroy();
         foreach($array as $item) {
       ?>
