@@ -13,9 +13,9 @@
     <title>Opções de Gestão</title>          
   </head> 
   <body>
-  <br><br>
+  <br>
   <a class="btn btn-outline-primary" href="#">Voltar</a>
-    <br>
+    <br><br>
     <div style="text-align: center" class="alert alert-success" role="alert">
         APROVADO
       </div>

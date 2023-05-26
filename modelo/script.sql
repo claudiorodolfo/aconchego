@@ -125,21 +125,21 @@ INSERT INTO `Exame` (`data`,`nome`) VALUES
 
 -- Despejando dados para a tabela `Parametro`
 INSERT INTO `Parametro` (`id`, `nivel`, `velocidade`, `quesito`) VALUES
-(1, 'EstakaZero', 'Devagar', 'Condução/Resposta'),
-(2, 'EstakaZero', 'Devagar', 'Abraço'),
-(3, 'EstakaZero', 'Devagar', 'Mecânica'),
-(4, 'EstakaZero', 'Devagar', 'Ritmo'),
-(5, 'EstakaZero', 'Devagar', 'Marcação'),
-(6, 'Falamansa', 'Devagar', 'Condução/Resposta'),
-(7, 'Falamansa', 'Devagar', 'Abraço'),
-(8, 'Falamansa', 'Devagar', 'Postura'),
-(9, 'Falamansa', 'Devagar', 'Sustentação'),
-(10, 'Falamansa', 'Devagar', 'Referência'),
-(11, 'Falamansa', 'Devagar', 'Mecânica'),
-(12, 'Falamansa', 'Devagar', 'Ritmo'),
-(13, 'Falamansa', 'Devagar', 'Marcação'),
-(14, 'Falamansa', 'Devagar', 'Giro Lateral'),
-(15, 'Falamansa', 'Devagar', 'Repertório'),
+(1, 'EstakaZero', 'Marcada', 'Condução/Resposta'),
+(2, 'EstakaZero', 'Marcada', 'Abraço'),
+(3, 'EstakaZero', 'Marcada', 'Mecânica'),
+(4, 'EstakaZero', 'Marcada', 'Ritmo'),
+(5, 'EstakaZero', 'Marcada', 'Marcação'),
+(6, 'Falamansa', 'Marcada', 'Condução/Resposta'),
+(7, 'Falamansa', 'Marcada', 'Abraço'),
+(8, 'Falamansa', 'Marcada', 'Postura'),
+(9, 'Falamansa', 'Marcada', 'Sustentação'),
+(10, 'Falamansa', 'Marcada', 'Referência'),
+(11, 'Falamansa', 'Marcada', 'Mecânica'),
+(12, 'Falamansa', 'Marcada', 'Ritmo'),
+(13, 'Falamansa', 'Marcada', 'Marcação'),
+(14, 'Falamansa', 'Marcada', 'Giro Lateral'),
+(15, 'Falamansa', 'Marcada', 'Repertório'),
 (16, 'Bicho de Pé', 'Lenta', 'Condução/Resposta'),
 (17, 'Bicho de Pé', 'Lenta', 'Abraço'),
 (18, 'Bicho de Pé', 'Lenta', 'Postura'),
@@ -220,7 +220,14 @@ INSERT INTO `Parametro` (`id`, `nivel`, `velocidade`, `quesito`) VALUES
 (93, 'Dominguinhos', 'Arrasta-pé', 'Desenho'),
 (94, 'Dominguinhos', 'Arrasta-pé', 'Giro Lateral'),
 (95, 'Dominguinhos', 'Arrasta-pé', 'Repertório'),
-(96, 'Dominguinhos', 'Arrasta-pé', 'Agilidade');
+(96, 'Dominguinhos', 'Arrasta-pé', 'Agilidade'),
+(97, 'Bicho de Pé', 'Lenta', 'Musicalidade'),
+(98, 'Bicho de Pé', 'Média', 'Musicalidade'),
+(99, 'Virgulino', 'Lenta', 'Musicalidade'),
+(100, 'Virgulino', 'Rápida', 'Musicalidade'),
+(101, 'Dominguinhos', 'Lenta', 'Musicalidade'),
+(102, 'Dominguinhos', 'Rápida', 'Musicalidade'),
+(103, 'Dominguinhos', 'Arrasta-pé', 'Musicalidade');
 
 -- Despejando dados para a tabela `Avaliacao`
 INSERT INTO `Avaliacao` (`id`, `exame`, `papel`, `nivel`, `aluno`, `professor`, `observacao`, `status`,`rascunho`) VALUES

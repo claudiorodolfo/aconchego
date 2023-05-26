@@ -13,7 +13,7 @@
     <title>Exames do Aluno</title>    
     <script src="js/script.js"></script>        
   </head> 
-  <body onload="buscarPorAluno()">
+  <body>
   <?php        
       require_once '../../entidades/Exame.php' ;     
       session_start();
@@ -26,11 +26,13 @@
       </tr>
       <?php        
         $array = unserialize($_SESSION['array_exame']);
+        if (!isset($array))
+          print "<script>buscarPorAluno()</script>";
         //session_destroy();
         foreach($array as $item) {
       ?>
           <tr>
-            <td><?php echo $item->getExame() . " - " . $item->getPapel(); ?></td>
+            <td><a href="https://claudiorodolfo.com.br/aconchego/visao/avaliacao/mostraravaliacao.php"><?php echo $item->getExame() . " - " . $item->getPapel(); ?></a></td>
           </tr>
       <?php
         }
