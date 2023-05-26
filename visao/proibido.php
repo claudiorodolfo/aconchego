@@ -13,7 +13,7 @@
     <!-- Programador -->
     <title>Proibido</title>          
   </head> 
-  <body">
+  <body>
    <h1>Acesso não autorizado</h1>
   </body>
 </html>
