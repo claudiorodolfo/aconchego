@@ -14,24 +14,24 @@
   </head> 
   <body>
     <br><br>
-    <div class="alert alert-success" role="alert">
+    <div style="text-align: center" class="alert alert-success" role="alert">
         APROVADO
       </div>
       <br>
-      <div class="alert alert-danger" role="alert">
+      <div style="text-align: center" class="alert alert-danger" role="alert">
         REPROVADO
       </div>
       <br>
     <table class="table table-bordered align-middle">
         <tr>
-            <td colspan="8">FEEDBACK</td>
+            <td style="text-align: center" colspan="8">FEEDBACK</td>
         </tr>
         <tr>
-            <td colspan="5" rowspan="2">ESTAKAZERO</td>
-            <td colspan="3">DATA</td>         
+            <td style="text-align: center" colspan="5" rowspan="2">ESTAKAZERO</td>
+            <td style="text-align: center" colspan="3">DATA</td>         
         </tr> 
         <tr>
-            <td colspan="3">  /  /  </td>
+            <td style="text-align: center" colspan="3">  /  /  </td>
         </tr>
         <tr>
             <td colspan="8"></td>
@@ -48,51 +48,51 @@
             <td colspan="8"></td>
         </tr>
         <tr>
-            <td colspan="4" class="table-primary">CONDUTOR(A)</td>
-            <td colspan="4">CONDUZIDA(O)</td>
+            <td style="text-align: center" colspan="4" class="table-primary">CONDUTOR(A)</td>
+            <td style="text-align: center" colspan="4">CONDUZIDA(O)</td>
         </tr> 
         <tr>
-            <td colspan="8">MARCADA</td>
+            <td style="text-align: center" colspan="8">MARCADA</td>
         </tr> 
         <tr>
             <td colspan="3">Condução/Resposta</td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td class="table-primary">4</td>
-            <td>5</td>
+            <td style="text-align: center">1</td>
+            <td style="text-align: center">2</td>
+            <td style="text-align: center">3</td>
+            <td style="text-align: center" class="table-primary">4</td>
+            <td style="text-align: center" >5</td>
         </tr> 
         <tr>
             <td colspan="3">Abraço</td>
-            <td>1</td>
-            <td>2</td>
-            <td class="table-primary">3</td>
-            <td>4</td>
-            <td>5</td>
+            <td style="text-align: center">1</td>
+            <td style="text-align: center">2</td>
+            <td style="text-align: center" class="table-primary">3</td>
+            <td style="text-align: center">4</td>
+            <td style="text-align: center">5</td>
         </tr> 
         <tr>
             <td colspan="3">Mecânica</td>
-            <td>1</td>
-            <td>2</td>
-            <td class="table-primary">3</td>
-            <td>4</td>
-            <td>5</td>
+            <td style="text-align: center">1</td>
+            <td style="text-align: center">2</td>
+            <td style="text-align: center" class="table-primary">3</td>
+            <td style="text-align: center">4</td>
+            <td style="text-align: center">5</td>
         </tr> 
         <tr>
             <td colspan="3">Ritmo</td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td class="table-primary">5</td>
+            <td style="text-align: center">1</td>
+            <td style="text-align: center">2</td>
+            <td style="text-align: center">3</td>
+            <td style="text-align: center">4</td>
+            <td style="text-align: center" class="table-primary">5</td>
         </tr> 
         <tr>
             <td colspan="3">Marcação</td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td class="table-primary">4</td>
-            <td>5</td>
+            <td style="text-align: center">1</td>
+            <td style="text-align: center">2</td>
+            <td style="text-align: center">3</td>
+            <td style="text-align: center" class="table-primary">4</td>
+            <td style="text-align: center">5</td>
         </tr> 
     </table>
   </body>
