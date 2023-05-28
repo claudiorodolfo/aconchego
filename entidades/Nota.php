@@ -10,19 +10,19 @@
  * @version Versão Inicial May 25, 2023
  */
 class Nota {
-    private $avaliacao;
+    private $idAvaliacao;
 	private $velocidade;
 	private $quesito;
 	private $nota;
 
 	public function __construct() {}
 
-	public function getAvaliacao() {
-		return $this->avaliacao;
+	public function getIdAvaliacao() {
+		return $this->idAvaliacao;
 	}
 	
-	public function setAvaliacao($avaliacao) {
-		$this->avaliacao = $avaliacao;
+	public function setIdAvaliacao($idAvaliacao) {
+		$this->idAvaliacao = $idAvaliacao;
 	}
 
 	public function getVelocidade() {

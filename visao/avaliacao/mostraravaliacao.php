@@ -13,94 +13,70 @@
     <title>Opções de Gestão</title>          
   </head> 
   <body>
+  <?php        
+      session_start();
+      $user = unserialize($_SESSION['login']);
+      $avaliacao = unserialize($_SESSION['avaliacao']);
+      $array_notas = unserialize($_SESSION['array_notas']);
+    ?>   
   <br>
   <a class="btn btn-outline-primary" href="../exame/mostrartodosaluno.php">Voltar</a>
     <br><br>
-    <div style="text-align: center" class="alert alert-success" role="alert">
-        APROVADO
+      <div style="text-align: center" <?php ($avaliacao->getStatus() == 'Aprovado')? 'class="alert alert-success"':'class="alert alert-warning"'; ?> role="alert">
+        <?php $avaliacao->getStatus(); ?>
       </div>
-     <!-- <br>
-      <div style="text-align: center" class="alert alert-warning" role="alert">
-        Faltou pouco. Não desista!
-      </div>-->
       <br>
     <table class="table table-bordered align-middle">
         <tr>
             <td style="text-align: center" colspan="8">FEEDBACK</td>
         </tr>
         <tr>
-            <td style="text-align: center" colspan="5" rowspan="2">ESTAKAZERO</td>
+            <td style="text-align: center" colspan="5" rowspan="2"><?php echo $avaliacao->getNivel(); ?></td>
             <td style="text-align: center" colspan="3">DATA</td>         
         </tr> 
         <tr>
-            <td style="text-align: center" colspan="3">03/02/2021</td>
+            <td style="text-align: center" colspan="3"><?php echo $avaliacao->getExame(); ?></td>
         </tr>
         <tr>
             <td colspan="8"></td>
         </tr>
         <tr>
             <td colspan="2">Nome</td>
-            <td colspan="6">Cláudio Rodolfo Sousa de Oliveira</td>
+            <td colspan="6"><?php echo $avaliacao->getAluno() ?></td>
         </tr>
         <tr>
             <td colspan="2">Examinador</td>
-            <td colspan="6">Angélica Menezes</td>
+            <td colspan="6"><?php echo $avaliacao->getProfessor() ?></td>
         </tr>       
         <tr>
             <td colspan="8"></td>
         </tr>
         <tr>
-            <td style="text-align: center" colspan="4" class="table-primary">CONDUTOR(A)</td>
-            <td style="text-align: center" colspan="4">CONDUZIDA(O)</td>
+        <td style="text-align: center" colspan="4" <?php ($avaliacao->getPapel() == 'Condutor')? 'class="table-primary"': ''; ?>>CONDUTOR(A)</td>
+            <td style="text-align: center" colspan="4" <?php ($avaliacao->getPapel() == 'Conduzido')? 'class="table-primary"': ''; ?>>CONDUZIDA(O)</td>           
         </tr> 
         <tr>
             <td style="text-align: center" colspan="8">MARCADA</td>
         </tr> 
+        <?php
+            foreach($array_notas as $nota) {
+        ?>
         <tr>
-            <td colspan="3">Condução/Resposta</td>
-            <td style="text-align: center">1</td>
-            <td style="text-align: center">2</td>
-            <td style="text-align: center">3</td>
-            <td style="text-align: center" class="table-primary">4</td>
-            <td style="text-align: center" >5</td>
+            <td colspan="3"><?php echo $nota->getQuesito(); ?></td>
+            <td style="text-align: center" <?php ($nota->getNota() == '1')? 'class="table-primary"': ''; ?>>1</td>
+            <td style="text-align: center" <?php ($nota->getNota() == '2')? 'class="table-primary"': ''; ?>>2</td>
+            <td style="text-align: center" <?php ($nota->getNota() == '3')? 'class="table-primary"': ''; ?>>3</td>
+            <td style="text-align: center" <?php ($nota->getNota() == '4')? 'class="table-primary"': ''; ?>>4</td>
+            <td style="text-align: center" <?php ($nota->getNota() == '5')? 'class="table-primary"': ''; ?>>5</td>
         </tr> 
-        <tr>
-            <td colspan="3">Abraço</td>
-            <td style="text-align: center">1</td>
-            <td style="text-align: center">2</td>
-            <td style="text-align: center" class="table-primary">3</td>
-            <td style="text-align: center">4</td>
-            <td style="text-align: center">5</td>
-        </tr> 
-        <tr>
-            <td colspan="3">Mecânica</td>
-            <td style="text-align: center">1</td>
-            <td style="text-align: center">2</td>
-            <td style="text-align: center" class="table-primary">3</td>
-            <td style="text-align: center">4</td>
-            <td style="text-align: center">5</td>
-        </tr> 
-        <tr>
-            <td colspan="3">Ritmo</td>
-            <td style="text-align: center">1</td>
-            <td style="text-align: center">2</td>
-            <td style="text-align: center">3</td>
-            <td style="text-align: center">4</td>
-            <td style="text-align: center" class="table-primary">5</td>
-        </tr> 
-        <tr>
-            <td colspan="3">Marcação</td>
-            <td style="text-align: center">1</td>
-            <td style="text-align: center">2</td>
-            <td style="text-align: center">3</td>
-            <td style="text-align: center" class="table-primary">4</td>
-            <td style="text-align: center">5</td>
-        </tr> 
+        <?php
+            }
+        ?> 
     </table>
     <div class="card">
       <div class="card-body">    
         <p class="card-text">
-            Boa Marcação. Melhorar troca de lado. Braço Balançando. Bem vindo ao BP!.
+        <?php echo $avaliacao->getObservacao(); ?>
         </p>    
       </div>
     </div>

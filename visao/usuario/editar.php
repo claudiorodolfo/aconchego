@@ -14,16 +14,20 @@
     <script src="js/script.js"></script>        
   </head> 
   <body>
-    <?php session_start(); ?>
+    <?php        
+      session_start();
+      require_once '../../entidades/Usuario.php' ;
+      $login = unserialize($_SESSION['login']);
+      if($login) {   
+        if ($login->getTipo() === "Admin")  { //posso mostrar a página
+    
+          $item = new Usuario();
+          if (isset($_SESSION["operacao"]) && $_SESSION["operacao"] == "atualizacao_usuario") {
+            $item = unserialize($_SESSION['usuario']);
+            //session_destroy();
+          }    
+    ?>
     <div class="container">
-      <?php
-        require_once '../../entidades/Usuario.php' ;
-        $item = new Usuario();
-        if (isset($_SESSION["operacao"]) && $_SESSION["operacao"] == "atualizacao_usuario") {
-          $item = unserialize($_SESSION['usuario']);
-          //session_destroy();
-        }
-      ?>
       <form
       enctype="multipart/form-data"
       action="../../controlador/rotasUsuario.php"
@@ -142,5 +146,14 @@
         <a class="btn btn-danger" href="mostrartodos.php">Cancelar</a>
       </form>
     </div>
+    <?php    
+        } else { //usuario não autorizado
+          header("Location: ../proibido.php");
+        }
+      
+      } else { //redireciona pra tela de login
+        header("Location: ../index.php");
+      }
+    ?>
   </body>
 </html>

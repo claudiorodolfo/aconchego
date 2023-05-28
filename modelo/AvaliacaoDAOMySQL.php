@@ -2,6 +2,7 @@
 /**
  * @package model
  */
+require_once '../entidades/Usuario.php';
 require_once '../entidades/Avaliacao.php';
 require_once 'interfaces/IAvaliacaoDAO.php';
 require_once 'conexoes/ConexaoMySQL.php';
@@ -37,32 +38,68 @@ class AvaliacaoDAOMySQL implements IAvaliacaoDAO {
 	* @param Avaliacao $avaliacao objeto POJO de uma Avaliacao
 	* @return Avaliacao
 	*/	
-	public function buscar($avaliacao) {
+	public function buscarPorAlunoDetalhe($avaliacao) {
 		/** @var string $sql contém a instrução SQL a ser executada no BD */
-		$sql = "SELECT Avaliacao.id, Avaliacao.aluno as idAluno, aluno.nome, professor.nome, Avaliacao.nivel
-		FROM Avaliacao, Usuario aluno, Usuario professor
-		WHERE Avaliacao.aluno = aluno.id and Avaliacao.professor = professor.id and
-		idAluno = {$avaliacao->getIdAluno()} and 
-			Avaliacao.exame = \"{$avaliacao->getExame()}\" and 
-			papel = \"{$avaliacao->getPapel()}\"";	
+		$sql = "SELECT aluno.nome as aluno, professor.nome as professor, Avaliacao.nivel, Avaliacao.status, Avaliacao.observacao " .
+				"FROM Avaliacao, Usuario aluno, Usuario professor " .
+				"WHERE Avaliacao.aluno = aluno.id and Avaliacao.professor = professor.id and ". 
+				"Avaliacao.aluno = {$avaliacao->getIdAluno()} and " .
+				"Avaliacao.exame = \"{$this->auxiliar->dataRemoveMascara($avaliacao->getExame())}\" and " .
+				"Avaliacao.papel = \"{$avaliacao->getPapel()}\"";	
 		//print $sql;
-		$avaliacao;
+		$aval;
 		$dados = mysqli_query($this->conexao, $sql);
 		if (mysqli_num_rows($dados) > 0) {
 			$linha = mysqli_fetch_array($dados);
-			$avaliacao = new Avaliacao();
-			$avaliacao->setId($linha['id']);
-			$avaliacao->setAluno($linha['aluno']);
-			$avaliacao->setIdAluno($item->getIdAluno());
-			$avaliacao->setProfessor($linha['professor']);       
-			$avaliacao->setExame($item->getExame());
-			$avaliacao->setPapel($item->getPapel());
-			$avaliacao->setNivel($linha['nivel']);
-
-			$avaliacao->setExame($this->auxiliar->dataColocaMascara($avaliacao->getExame()));
+			$aval = new Avaliacao();
+			$aval->setIdAluno($avaliacao->getIdAluno());
+			$aval->setExame($avaliacao->getExame());
+			$aval->setPapel($avaliacao->getPapel());
+			$aval->setIdAvaliacao($avaliacao->getIdAvaliacao());
+			
+			$aval->setAluno($linha['aluno']);
+			$aval->setProfessor($linha['professor']); 
+			$aval->setNivel($linha['nivel']);
+			$aval->setObservacao($linha['observacao']);
+			$aval->setStatus($linha['status']);
 		}	
-		return $avaliacao;
-	}	
+		return $aval;
+	}
+	
+    /**
+	* Busca as Avaliações feitas por uma aluno especifico no banco de dados MySQL
+	* @param Aluno $aluno objeto POJO de Aluno
+	* @return Avaliacao[]
+	*/	
+	public function buscarPorAluno($aluno) {
+		/** @var string $sql contém a instrução SQL a ser executada no BD */	
+        $sql = "SELECT exame, papel, Avaliacao.id as idAvaliacao ".
+                "FROM Usuario, Avaliacao " .
+                "WHERE Usuario.id = Avaliacao.aluno and Avaliacao.rascunho = 0 and " .
+				"Usuario.id = {$aluno->getId()} " .
+                "ORDER BY exame desc";
+		//print $sql;
+		$dados = mysqli_query($this->conexao, $sql);
+		/** @var array é um vetor de Exames */
+		$array = [];
+		/** @var quantidade é o número de registros retornados do BD */
+		$quantidade = mysqli_num_rows($dados);
+		for($i = 0; $i < $quantidade; $i++) {
+			$linha = mysqli_fetch_array($dados);
+			$avaliacao = new Avaliacao();
+			$avaliacao->setIdAluno($aluno->getId());
+			
+			$avaliacao->setIdAvaliacao($linha['idAvaliacao']);	
+			$avaliacao->setExame($linha['exame']);
+			$avaliacao->setPapel($linha['papel']); 
+			
+			$avaliacao->setExame($this->auxiliar->dataColocaMascara($avaliacao->getExame()));
+			
+			$array[$i] = $avaliacao;
+		}
+		return $array;
+	}
+
 
    /**
 	* Desconecta do BD

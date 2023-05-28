@@ -192,11 +192,11 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 		$quantidade = mysqli_num_rows($dados);
 		for($i = 0; $i < $quantidade; $i++) {
 			$linha = mysqli_fetch_array($dados);
-			$item = new Usuario();
-			$item->setId($linha['id']);
-			$item->setNome($linha['nome']);           
-			$item->setTipo($linha['tipo']);
-			$array[$i] = $item;
+			$usuario = new Usuario();
+			$usuario->setId($linha['id']);
+			$usuario->setNome($linha['nome']);           
+			$usuario->setTipo($linha['tipo']);
+			$array[$i] = $usuario;
 		}
 		return $array;
 	}

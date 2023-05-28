@@ -15,11 +15,11 @@
   </head> 
   <body onload="buscarTodos()">
     <?php        
-      require_once '../../entidades/Usuario.php' ;
       session_start();
-      $user = unserialize($_SESSION['login']);
-      if($user) {   
-        if ($user->getTipo() === "Admin")  { //posso mostrar a página
+      require_once '../../entidades/Usuario.php' ;
+      $login = unserialize($_SESSION['login']);
+      if($login) {   
+        if ($login->getTipo() === "Admin")  { //posso mostrar a página
     ?>
     <div class="container">
     <br>
@@ -59,7 +59,7 @@
       </form>
     </div>       
     <?php    
-        } else { //usuario nao autorizado
+        } else { //usuario não autorizado
           header("Location: ../proibido.php");
         }
       

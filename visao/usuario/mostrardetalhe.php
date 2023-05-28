@@ -14,16 +14,17 @@
     <script src="js/script.js"></script>        
   </head> 
   <body>
-    <?php 
-      session_start(); 
+    <?php        
+      session_start();
+      require_once '../../entidades/Usuario.php' ;
+      $login = unserialize($_SESSION['login']);
+      if($login) {   
+        if ($login->getTipo() === "Admin")  { //posso mostrar a página
+          $item = unserialize($_SESSION['usuario']);
+          //session_destroy();
     ?>
     <div class="container">
       <br><br>
-      <?php
-        require_once '../../entidades/Usuario.php' ;
-        $item = unserialize($_SESSION['usuario']);
-        //session_destroy();
-      ?>
       <br>      
       <a class="btn btn-outline-primary" href="mostrartodos.php">Voltar</a>
       <br><br>
@@ -34,88 +35,66 @@
         <tr>             
           <td><?php echo $item->getId() ?></td>
         </tr>          
-      </table>
-      <table class='table table-striped table-bordered'>
         <tr>
           <th>Nome</th>
         </tr>
         <tr>             
           <td><?php echo $item->getNome() ?></td>
         </tr>          
-      </table>
-      <table class='table table-striped table-bordered'>
         <tr>
           <th>Email</th>
         </tr>
         <tr>             
           <td><?php echo $item->getEmail() ?></td>
         </tr>          
-      </table>
-      <table class='table table-striped table-bordered'>
         <tr>
           <th>CPF</th>
         </tr>
         <tr>             
           <td><?php echo $item->getCpf() ?></td>
         </tr>          
-      </table>
-      <table class='table table-striped table-bordered'>
         <tr>
           <th>Data de Nascimento</th>
         </tr>
         <tr>             
           <td><?php echo $item->getDataNascimento() ?></td>
         </tr>          
-      </table>
-      <table class='table table-striped table-bordered'>
         <tr>
           <th>Telefone</th>
         </tr>
         <tr>             
           <td><?php echo $item->getTelefone() ?></td>
         </tr>          
-      </table>
-            <table class='table table-striped table-bordered'>
         <tr>
           <th>Endereço</th>
         </tr>
         <tr>             
           <td><?php echo $item->getEndereco() ?></td>
         </tr>          
-      </table>
-            <table class='table table-striped table-bordered'>
         <tr>
           <th>Nível Condutor(a)</th>
         </tr>
         <tr>             
           <td><?php echo $item->getNivelCondutor() ?></td>
         </tr>          
-      </table>
-            <table class='table table-striped table-bordered'>
         <tr>
           <th>Nível Conduzido(a)</th>
         </tr>
         <tr>             
           <td><?php echo $item->getNivelConduzido() ?></td>
         </tr>          
-      </table>
-            <table class='table table-striped table-bordered'>
         <tr>
           <th>Tipo</th>
         </tr>
         <tr>             
           <td><?php echo $item->getTipo() ?></td>
         </tr>          
-      </table>
-      <table class='table table-striped table-bordered'>
         <tr>
           <th>Foto</th>
         </tr>
         <tr>             
           <td><?php echo $item->getFoto() ?></td>
         </tr>          
-      </table>
-      <table class='table table-striped table-bordered'>
         <tr>
           <th>Ativo</th>
         </tr>
@@ -124,5 +103,14 @@
         </tr>          
       </table>      
     </div>
+    <?php    
+        } else { //usuario não autorizado
+          header("Location: ../proibido.php");
+        }
+      
+      } else { //redireciona pra tela de login
+        header("Location: ../index.php");
+      }
+    ?>
   </body>
 </html>

@@ -7,25 +7,27 @@
  * Classe POJO para mapeamento ORM
  * 
  * @author Cláudio Rodolfo S. de Oliveira
- * @version Versão Inicial May 25, 2023
+ * @version Versão Inicial May 26, 2023
  */
-class Usuario {
-    private $id;
+class Avaliacao {
+    private $idAvaliacao;
 	private $aluno;
 	private $idAluno;
 	private $professor;
 	private $exame;
 	private $papel;
 	private $nivel;
+	private $observacao;
+	private $status;
 
 	public function __construct() {}
 
-	public function getId() {
-		return $this->id;
+	public function getIdAvaliacao() {
+		return $this->idAvaliacao;
 	}
 	
-	public function setId($id) {
-		$this->id = $id;
+	public function setIdAvaliacao($idAvaliacao) {
+		$this->idAvaliacao = $idAvaliacao;
 	}
 
 	public function getAluno() {
@@ -75,7 +77,21 @@ class Usuario {
 	public function setNivel($nivel) {
 		$this->nivel = $nivel;
 	}
+	public function getObservacao() {
+		return $this->observacao;
+	}
 	
+	public function setObservacao($observacao) {
+		$this->observacao = $observacao;
+	}
+	public function getStatus() {
+		return $this->status;
+	}
+	
+	public function setStatus($status) {
+		$this->status = $status;
+	}
+
 	public function imprimir() {
 		return print_r($this);
 	}

@@ -22,7 +22,7 @@
     <br><br>
     <table class='table table-striped table-bordered'>
       <tr>
-        <th>Exame - Função</th>
+        <th style="text-align: center">Exame - Função</th>
       </tr>
       <?php        
         $array = unserialize($_SESSION['array_exame']);
@@ -32,7 +32,7 @@
         foreach($array as $item) {
       ?>
           <tr>
-            <td><a href="https://claudiorodolfo.com.br/aconchego/visao/avaliacao/mostraravaliacao.php"><?php echo $item->getExame() . " - " . $item->getPapel(); ?></a></td>
+            <td style="text-align: center"><a href="#" onclick="buscaAvaliacaoAluno();"><?php echo $item->getExame() . " - " . $item->getPapel(); ?></a></td>
           </tr>
       <?php
         }
