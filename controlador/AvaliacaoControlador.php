@@ -18,7 +18,7 @@ class AvaliacaoControlador {
     private $dao;
 
    /**
-	* Instancia @var ExameDAOMySQL $dao como UsuarioDAOMySQL
+	* Instancia @var AvaliacaoDAOMySQL $dao como UsuarioDAOMySQL
 	*/
     public function __construct() {
         $this->dao = new AvaliacaoDAOMySQL();
