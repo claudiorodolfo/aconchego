@@ -27,22 +27,22 @@ if (isset($_POST['acao'])) {
             $_SESSION['array_avaliacao'] = serialize($array);
             header("Location: ../visao/exame/mostrartodosaluno.php");
             break;
-            case 'buscar_avaliacao_aluno':
-                $exames = unserialize($_SESSION['array_avaliacao']);
-                $item = $controlador->buscar($_POST['id']);
-                $e = $exames[$item];
-                $avaliacao = $controlador->buscarAvaliacaoAluno($e);
-                $_SESSION['avaliacao'] = serialize($avaliacao);
-                $array_notas = $controlador->buscarNotasAvaliacao($avaliacao);
-                $_SESSION['array_notas'] = serialize($array_notas);
-                header("Location: ../visao/avaliacao/mostraravaliacao.php");
-                break;
-            case 'buscar_todos':
-                //  $array = $controlador->buscarTodos();
-                // $_SESSION["array_exame"] = serialize($array);        
-                //print "<script>location.href='../visao/usuario/mostrartodos.php';</script>";   
-                // header("Location: ../visao/exame/mostrartodos.php");
-                break;
+        case 'buscar_avaliacao_aluno':
+            $exames = unserialize($_SESSION['array_avaliacao']);
+            $item = $controlador->buscar($_POST['id']);
+            $e = $exames[$item];
+            $avaliacao = $controlador->buscarAvaliacaoAluno($e);
+            $_SESSION['avaliacao'] = serialize($avaliacao);
+            $array_notas = $controlador->buscarNotasAvaliacao($avaliacao);
+            $_SESSION['array_notas'] = serialize($array_notas);
+            header("Location: ../visao/avaliacao/mostraravaliacao.php");
+            break;
+        //case 'buscar_todos':
+            //  $array = $controlador->buscarTodos();
+            // $_SESSION["array_exame"] = serialize($array);        
+            //print "<script>location.href='../visao/usuario/mostrartodos.php';</script>";   
+            // header("Location: ../visao/exame/mostrartodos.php");
+        //    break;
         default:
     }
 }
