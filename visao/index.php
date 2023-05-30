@@ -15,6 +15,9 @@
     <script src="usuario/js/script.js"></script>          
   </head>
   <body class="p-3 m-0 border-1 bd-example">
+      <!--Ler cookie e preencher campos automaticamente
+      se usuario selecionar check, gravar dados no cookie.
+      -->
         <div class="dropdown-menu">
         <form 
           class="px-4 py-3"

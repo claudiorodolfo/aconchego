@@ -22,10 +22,13 @@
         if ($login->getTipo() === "Admin")  { //posso mostrar a página
     
           $item = new Usuario();
-          if (isset($_SESSION["operacao"]) && $_SESSION["operacao"] == "atualizacao_usuario") {
+          //atualizar o usuario
+          $update = isset($_SESSION["operacao"]) && $_SESSION["operacao"] === "atualizacao_usuario";
+          if ($update) {   
             $item = unserialize($_SESSION['usuario']);
+            unset($_SESSION["operacao"]);
             //session_destroy();
-          }    
+          }   
     ?>
     <div class="container">
       <form
@@ -37,7 +40,7 @@
 				<h1>Edição de Usuários</h1>
 				<br>
         <div class="form-group">
-          <label for="nome">Nome</label>
+          <label for="nome" class="text-danger">*Nome:</label>
           <input type="text" 
             class="form-control" 
             id="nome" 
@@ -46,7 +49,7 @@
             Required>
         </div>
         <div class="form-group">
-          <label for="email">E-mail</label>
+          <label for="email" class="text-danger">*E-mail:</label>
           <input 
             type="email" 
             class="form-control" 
@@ -56,7 +59,7 @@
             Required>
         </div>    
         <div class="form-group">
-          <label for="cpf">CPF</label>
+          <label for="cpf">CPF:</label>
           <input type="text" 
             class="form-control" 
             id="cpf" 
@@ -64,7 +67,7 @@
             value="<?php echo $item->getCpf() ?>">
         </div>  
         <div class="form-group">
-          <label for="data_nascimento">Data de Nascimento</label>
+          <label for="data_nascimento">Data de Nascimento:</label>
           <input type="text" 
             class="form-control" 
             id="data_nascimento" 
@@ -72,7 +75,7 @@
             value="<?php echo $item->getDataNascimento() ?>">
         </div>  
         <div class="form-group">
-          <label for="telefone">Telefone</label>
+          <label for="telefone">Telefone:</label>
           <input type="text" 
             class="form-control" 
             id="telefone" 
@@ -80,7 +83,7 @@
             value="<?php echo $item->getTelefone() ?>">
         </div>  
         <div class="form-group">
-          <label for="endereco">Endereço</label>
+          <label for="endereco">Endereço:</label>
           <textarea 
             class="form-control" 
             id="endereco" 
@@ -90,7 +93,7 @@
           </textarea>
         </div>                                   
         <div class="form-group">
-          <label for="condutor">Nível Condutor(a)</label>
+          <label for="condutor">Nível Condutor(a):</label>
           <select class="form-control" id="condutor" name="condutor">
             <option value="" <?php echo ($item->getNivelCondutor() == '') ? 'selected':''; ?>></option>
             <option value="EstakaZero" <?php echo ($item->getNivelCondutor() == 'EstakaZero') ? 'selected':''; ?>>EstakaZero</option>
@@ -102,7 +105,7 @@
           </select>
         </div>
         <div class="form-group">
-          <label for="conduzido">Nível Conduzida(o)</label>
+          <label for="conduzido">Nível Conduzida(o):</label>
           <select class="form-control" id="conduzido" name="conduzido">
           <option value="" <?php echo ($item->getNivelConduzido() == '') ? 'selected':''; ?>></option>
             <option value="EstakaZero" <?php echo ($item->getNivelConduzido() == 'EstakaZero') ? 'selected':''; ?>>EstakaZero</option>
@@ -114,7 +117,7 @@
           </select>
         </div>  
         <div class="form-group">
-          <label for="tipo">Tipo</label>
+          <label for="tipo" class="text-danger">*Tipo:</label>
           <select class="form-control" id="tipo" name="tipo">
             <option value="Aluno" <?php echo ($item->getTipo() == 'Aluno') ? 'selected':''; ?>>Aluno</option>
             <option value="Instrutor" <?php echo ($item->getTipo() == 'Instrutor') ? 'selected':''; ?>>Instrutor</option>
@@ -123,24 +126,30 @@
           </select>
         </div>                 
         <div class="form-group">
-          <label for="foto">Foto</label>
+          <label for="foto">Foto:</label>
           <input type="file" class="form-control" id="foto" name="foto" value="<?php echo $item->getFoto() ?>">
         </div>
         <div class="form-group">
-          <label for="esta_ativo">Ativo</label>
+          <label for="esta_ativo" class="text-danger">*Ativo:</label>
           <select class="form-control" id="esta_ativo" name="esta_ativo">
             <option value="0" <?php echo ($item->getEstaAtivo() == '0') ? 'selected':''; ?>>Não</option>
             <option value="1" <?php echo ($item->getEstaAtivo() == '1') ? 'selected':''; ?>>Sim</option>
           </select>
-        </div>        
+        </div>    
+        <?php
+          if (!$update) { 
+        ?>
         <div class="form-group">
-          <label for="senha">Senha:</label>
+          <label for="senha" class="text-danger">*Senha:</label>
           <input type="password" class="form-control" id="senha" name="senha" value="<?php echo $item->getEmail() ?>">
         </div> 
         <div class="form-group">
-          <label for="confirma_senha">Confirma a senha:</label>
+          <label for="confirma_senha" class="text-danger">*Confirma a senha:</label>
           <input type="password" class="form-control" id="confirma_senha" name="confirma_senha" value="<?php echo $item->getEmail() ?>">
-        </div>                 
+        </div>   
+        <?php
+          }
+        ?>              
         <br />
         <button type="submit" class="btn btn-primary">Salvar</button>
         <a class="btn btn-danger" href="mostrartodos.php">Cancelar</a>

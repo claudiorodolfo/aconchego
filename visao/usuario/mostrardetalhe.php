@@ -24,7 +24,6 @@
           //session_destroy();
     ?>
     <div class="container">
-      <br><br>
       <br>      
       <a class="btn btn-outline-primary" href="mostrartodos.php">Voltar</a>
       <br><br>
