@@ -14,6 +14,7 @@
     <script src="js/script.js"></script>        
   </head> 
   <body>
+  <!--<body style="width:50px; height:50px; background-image:url(imagens/logo.png); background-repeat:no-repeat; background-position:bottom">-->
       <br><br>
       <a class="btn btn-outline-primary" href="usuario/mostrartodos.php">Gerir Usuários</a>
       <br><br>

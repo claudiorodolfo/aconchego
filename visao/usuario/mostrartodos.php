@@ -13,7 +13,7 @@
     <title>Controle de Usuários</title>    
     <script src="js/script.js"></script>        
   </head> 
-  <body onload="buscarTodos()">
+  <body>
     <?php        
       session_start();
       require_once '../../entidades/Usuario.php' ;
@@ -34,19 +34,19 @@
       </tr>
       <?php        
         $array = unserialize($_SESSION['array_usuario']);
-        // if (!isset($array))
-        //   print "<script>buscarTodos()</script>";
+         if (!isset($array))
+           print "<script type='text/javascript'>buscarTodos();</script>";
         //session_destroy();
         foreach($array as $item) {
       ?>
           <tr>
-            <td><?php echo $item->getId(); ?></td>
-            <td><?php echo $item->getNome(); ?></td>
-            <td><?php echo $item->getTipo(); ?></td>
+            <td><?= $item->getId(); ?></td>
+            <td><?= $item->getNome(); ?></td>
+            <td><?= $item->getTipo(); ?></td>
             <td>
-              <button class="btn btn-info" onclick="buscar(<?php echo $item->getId();; ?>)">Detalhar</button>
-              <button class="btn btn-primary" onclick="atualizar(<?php echo $item->getId() ?>)">Alterar</button>
-              <button class="btn btn-danger" onclick="apagar(<?php echo $item->getId(); ?>)">Apagar</button>
+              <button class="btn btn-info" onclick="buscar(<?= $item->getId(); ?>)">Detalhar</button>
+              <button class="btn btn-primary" onclick="atualizar(<?= $item->getId(); ?>)">Alterar</button>
+              <button class="btn btn-danger" onclick="apagar(<?= $item->getId(); ?>)">Apagar</button>
             </td>
           </tr>
       <?php

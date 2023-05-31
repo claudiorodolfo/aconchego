@@ -32,73 +32,73 @@
           <th>Id</th>
         </tr>
         <tr>             
-          <td><?php echo $item->getId() ?></td>
+          <td><?= $item->getId(); ?></td>
         </tr>          
         <tr>
           <th>Nome</th>
         </tr>
         <tr>             
-          <td><?php echo $item->getNome() ?></td>
+          <td><?= $item->getNome(); ?></td>
         </tr>          
         <tr>
           <th>Email</th>
         </tr>
         <tr>             
-          <td><?php echo $item->getEmail() ?></td>
+          <td><?= $item->getEmail(); ?></td>
         </tr>          
         <tr>
           <th>CPF</th>
         </tr>
         <tr>             
-          <td><?php echo $item->getCpf() ?></td>
+          <td><?= $item->getCpf(); ?></td>
         </tr>          
         <tr>
           <th>Data de Nascimento</th>
         </tr>
         <tr>             
-          <td><?php echo $item->getDataNascimento() ?></td>
+          <td><?= $item->getDataNascimento(); ?></td>
         </tr>          
         <tr>
           <th>Telefone</th>
         </tr>
         <tr>             
-          <td><?php echo $item->getTelefone() ?></td>
+          <td><?= $item->getTelefone(); ?></td>
         </tr>          
         <tr>
           <th>Endereço</th>
         </tr>
         <tr>             
-          <td><?php echo $item->getEndereco() ?></td>
+          <td><?= $item->getEndereco(); ?></td>
         </tr>          
         <tr>
           <th>Nível Condutor(a)</th>
         </tr>
         <tr>             
-          <td><?php echo $item->getNivelCondutor() ?></td>
+          <td><?= $item->getNivelCondutor(); ?></td>
         </tr>          
         <tr>
           <th>Nível Conduzido(a)</th>
         </tr>
         <tr>             
-          <td><?php echo $item->getNivelConduzido() ?></td>
+          <td><?= $item->getNivelConduzido(); ?></td>
         </tr>          
         <tr>
           <th>Tipo</th>
         </tr>
         <tr>             
-          <td><?php echo $item->getTipo() ?></td>
+          <td><?= $item->getTipo(); ?></td>
         </tr>          
         <tr>
           <th>Foto</th>
         </tr>
         <tr>             
-          <td><?php echo $item->getFoto() ?></td>
+          <td><?= $item->getFoto(); ?></td>
         </tr>          
         <tr>
           <th>Ativo</th>
         </tr>
         <tr>             
-          <td><?php echo ($item->getEstaAtivo() == '0') ? 'Não': 'Sim'; ?></td>
+          <td><?= ($item->getEstaAtivo() == '0') ? 'Não': 'Sim'; ?></td>
         </tr>          
       </table>      
     </div>

@@ -8,7 +8,9 @@ function buscarPorAluno() {
 //    $("#form").submit();
 //}
 
-function buscarAvaliacaoAluno() {
+function buscarAvaliacaoAluno(exame, papel) {
     $("#acao").val('buscar_avaliacao_aluno');
+    $("#exame").val(exame);
+    $("#papel").val(papel);    
     $("#form").submit();
 }
