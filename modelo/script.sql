@@ -3,11 +3,11 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 -- Banco de dados: `claudior_teste`
- CREATE DATABASE IF NOT EXISTS `claudior_teste`;
- ALTER DATABASE `claudior_teste` CHARSET = UTF8 COLLATE = utf8_general_ci;
- USE `claudior_teste`;
+ --CREATE DATABASE IF NOT EXISTS `claudior_teste`;
+ --ALTER DATABASE `claudior_teste` CHARSET = UTF8 COLLATE = utf8_general_ci;
+ --USE `claudior_teste`;
  
-----------------------------------------------------------
+-- --------------------------------------------------------
 -- Estruturas das tabelas
 -- Estrutura para tabela `Usuario`
 CREATE TABLE IF NOT EXISTS `Usuario` (
@@ -48,10 +48,9 @@ CREATE TABLE IF NOT EXISTS `Avaliacao` (
   `aluno` int(11) NOT NULL,
   `professor` int(11) NOT NULL,
   `observacao` varchar(255) NOT NULL,
-  `status` varchar(15) NOT NULL
-  `rascunho` tinyint(1) NOT NULL,
+  `status` varchar(15) NOT NULL,
+  `rascunho` tinyint(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
 
 -- Estrutura para tabela `Nota`
 CREATE TABLE IF NOT EXISTS `Nota` (
@@ -60,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `Nota` (
   `nota` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-----------------------------------------------------------
+-- --------------------------------------------------------
 -- Chaves para tabelas
 -- Chave primária de tabela `Avaliacao`
 ALTER TABLE `Avaliacao`
@@ -92,22 +91,22 @@ ALTER TABLE `Nota`
   ADD CONSTRAINT Nota_parametro FOREIGN KEY (`parametro`) REFERENCES `Parametro`(`id`),
   ADD CONSTRAINT Nota_avaliacao FOREIGN KEY (`avaliacao`) REFERENCES `Avaliacao`(`id`);
 
-----------------------------------------------------------
+-- --------------------------------------------------------
 -- AUTO_INCREMENT para tabelas
 -- AUTO_INCREMENT de tabela `Avaliacao`
 ALTER TABLE `Avaliacao`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 -- AUTO_INCREMENT de tabela `Parametro`
 ALTER TABLE `Parametro`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 
 -- AUTO_INCREMENT de tabela `Usuario`
 ALTER TABLE `Usuario`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
-----------------------------------------------------------
-
+-- --------------------------------------------------------
+-- Populando o Banco com Dados
 -- Despejando dados para a tabela `Usuario`
 INSERT INTO `Usuario` (`id`, `nome`, `email`, `cpf`, `dataNascimento`, `telefone`, `endereco`, `nivelCondutor`, `nivelConduzido`, `tipo`, `estaAtivo`, `senha`) VALUES
 (2, 'Joao Pedro Lessa', 'jp_aconchego@gmail.com', '12312312322', NULL, '77985676543', 'Rua B', 'Luiz Gonzaga', 'Dominguinhos', 'Professor', 1, '81dc9bdb52d04dc20036dbd8313ed055'),
