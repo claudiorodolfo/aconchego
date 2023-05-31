@@ -22,8 +22,8 @@
   <br>
   <a class="btn btn-outline-primary" href="../exame/mostrartodosaluno.php">Voltar</a>
     <br><br>
-      <div style="text-align: center" <?php ($avaliacao->getStatus() == 'Aprovado')? 'class="alert alert-success"':'class="alert alert-warning"'; ?> role="alert">
-        <?php $avaliacao->getStatus(); ?>
+      <div style="text-align: center" <?php echo ($avaliacao->getStatus() == 'Aprovado')? 'class="alert alert-success"':'class="alert alert-warning"'; ?> role="alert">
+        <?php echo $avaliacao->getStatus(); ?>
       </div>
       <br>
     <table class="table table-bordered align-middle">
@@ -52,8 +52,8 @@
             <td colspan="8"></td>
         </tr>
         <tr>
-        <td style="text-align: center" colspan="4" <?php ($avaliacao->getPapel() == 'Condutor')? 'class="table-primary"': ''; ?>>CONDUTOR(A)</td>
-            <td style="text-align: center" colspan="4" <?php ($avaliacao->getPapel() == 'Conduzido')? 'class="table-primary"': ''; ?>>CONDUZIDA(O)</td>           
+        <td style="text-align: center" colspan="4" <?php echo ($avaliacao->getPapel() == 'Condutor')? 'class="table-primary"': ''; ?>>CONDUTOR(A)</td>
+            <td style="text-align: center" colspan="4" <?php echo ($avaliacao->getPapel() == 'Conduzido')? 'class="table-primary"': ''; ?>>CONDUZIDA(O)</td>           
         </tr> 
         <tr>
             <td style="text-align: center" colspan="8">MARCADA</td>
@@ -63,11 +63,11 @@
         ?>
         <tr>
             <td colspan="3"><?php echo $nota->getQuesito(); ?></td>
-            <td style="text-align: center" <?php ($nota->getNota() == '1')? 'class="table-primary"': ''; ?>>1</td>
-            <td style="text-align: center" <?php ($nota->getNota() == '2')? 'class="table-primary"': ''; ?>>2</td>
-            <td style="text-align: center" <?php ($nota->getNota() == '3')? 'class="table-primary"': ''; ?>>3</td>
-            <td style="text-align: center" <?php ($nota->getNota() == '4')? 'class="table-primary"': ''; ?>>4</td>
-            <td style="text-align: center" <?php ($nota->getNota() == '5')? 'class="table-primary"': ''; ?>>5</td>
+            <td style="text-align: center" <?php echo ($nota->getNota() == '1')? 'class="table-primary"': ''; ?>>1</td>
+            <td style="text-align: center" <?php echo ($nota->getNota() == '2')? 'class="table-primary"': ''; ?>>2</td>
+            <td style="text-align: center" <?php echo ($nota->getNota() == '3')? 'class="table-primary"': ''; ?>>3</td>
+            <td style="text-align: center" <?php echo ($nota->getNota() == '4')? 'class="table-primary"': ''; ?>>4</td>
+            <td style="text-align: center" <?php echo ($nota->getNota() == '5')? 'class="table-primary"': ''; ?>>5</td>
         </tr> 
         <?php
             }
