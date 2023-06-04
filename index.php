@@ -12,7 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Programador -->
     <title>Autenticação</title>  
-    <script src="usuario/js/script.js"></script>          
+    <script src="visao/usuario/js/script.js"></script>          
   </head>
   <body class="p-3 m-0 border-1 bd-example">
       <!--Ler cookie e preencher campos automaticamente
@@ -23,7 +23,7 @@
           class="px-4 py-3"
           id="form" 
           method="post" 
-          action="../controlador/rotasUsuario.php">
+          action="controlador/rotasUsuario.php">
             <input type="hidden" name="acao" id="acao">
 
               <div class="mb-3">

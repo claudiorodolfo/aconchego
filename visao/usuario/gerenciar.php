@@ -16,10 +16,10 @@
   <body>
   <!--<body style="width:50px; height:50px; background-image:url(imagens/logo.png); background-repeat:no-repeat; background-position:bottom">-->
       <br><br>
-      <a class="btn btn-outline-primary" href="usuario/mostrartodos.php">Gerir Usuários</a>
+      <a class="btn btn-outline-primary" href="mostrartodos.php">Gerir Usuários</a>
       <br><br>
-      <a class="btn btn-outline-primary" href="avaliacao/mostrartodos.php">Gerir Avaliações</a>
+      <a class="btn btn-outline-primary" href="../avaliacao/mostrartodos.php">Gerir Avaliações</a>
       <br><br>
-      <a class="btn btn-outline-primary" href="exame/mostrartodos.php">Gerir Exames</a>
+      <a class="btn btn-outline-primary" href="../avaliacao/mostrartodos.php">Gerir Exames</a>
   </body>
 </html>

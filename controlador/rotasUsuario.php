@@ -26,20 +26,20 @@ if (isset($_POST['acao'])) {
                 $_SESSION['login'] = serialize($item);
                 switch ($item->getTipo()) {
                     case 'Admin':
-                        header("Location: ../visao/gerenciar.php");
+                        header("Location: ../visao/usuario/gerenciar.php");
                     break;
                     case 'Professor':
                     case 'Monitor':
                         header("Location: ../visao/avaliacao/avaliaralunos.php");
                     break;
                     case 'Aluno':
-                        header("Location: ../visao/exame/mostrartodosaluno.php");
+                        header("Location: ../visao/avaliacao/mostrartodosaluno.php");
                     break;
                     default:
                 }
             //não foi autenticado com sucesso
             } else {
-                header("Location: ../visao/index.php");
+                header("Location: ../index.php");
             }
             break;
         case 'salvar':
@@ -62,7 +62,7 @@ if (isset($_POST['acao'])) {
             header("Location: ../visao/usuario/editar.php");
             break;
         case 'buscar_todos':
-            $array = $controlador->buscarTodos();
+             $array = $controlador->buscarTodos();
             $_SESSION["array_usuario"] = serialize($array);        
             //print "<script>location.href='../visao/usuario/mostrartodos.php';</script>";   
             header("Location: ../visao/usuario/mostrartodos.php");

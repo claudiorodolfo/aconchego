@@ -32,11 +32,8 @@
         <th>Tipo</th>
         <th>Ações</th>
       </tr>
-      <?php        
+      <?php     
         $array = unserialize($_SESSION['array_usuario']);
-         if (!isset($array))
-           print "<script type='text/javascript'>buscarTodos();</script>";
-        //session_destroy();
         foreach($array as $item) {
       ?>
           <tr>
@@ -66,6 +63,10 @@
       } else { //redireciona pra tela de login
         header("Location: ../index.php");
       }
+      //if (!isset($array)) {
+        print "<script type='text/javascript'>buscarTodos();</script>";
+        //session_destroy();
+      //}    
     ?>
   </body>
 </html>
