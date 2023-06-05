@@ -1,6 +1,4 @@
 function buscarPorAluno() {
-    alert('buscarPorAluno');
-    console.log('buscarPorAluno');
     $("#acao").val('buscar_por_aluno');
     $("#form").submit();
 }
