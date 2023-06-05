@@ -2,7 +2,8 @@
 /**
  * @package model
  */
-require_once '../entidades/Nota.php';
+require_once '../entidades/Avaliacao.php';
+ require_once '../entidades/Nota.php';
 require_once 'interfaces/INotaDAO.php';
 require_once 'conexoes/ConexaoMySQL.php';
 
@@ -12,7 +13,7 @@ require_once 'conexoes/ConexaoMySQL.php';
  * @author Cláudio Rodolfo S. de Oliveira
  * @version Versão Inicial May 18, 2023
  */
-class UsuarioDAOMySQL implements IUsuarioDAO {
+class NotaDAOMySQL implements INotaDAO {
 
 	/** @var Resource $conexao é um ponteiro para um conexão com o BD MySQL */
 	private $conexao;
@@ -32,26 +33,28 @@ class UsuarioDAOMySQL implements IUsuarioDAO {
 	* @param Avaliacao $avaliacao objeto POJO de uma Avaliacao
 	* @return Nota[]
 	*/	
-	public function buscar($avaliacao) {
+	public function buscarNotasAvaliacao($avaliacao) {
 		/** @var string $sql contém a instrução SQL a ser executada no BD */
-		$sql = "SELECT avaliacao, velocidade, quesito, nota
-		FROM Nota, Parametro
-		WHERE Nota.parametro = Parametro.id and avaliacao = {$avaliacao->getId()}}";
-		//print $sql;
+		$sql = "SELECT avaliacao, velocidade, quesito, nota " .
+		"FROM Nota, Parametro " . 
+		"WHERE Nota.parametro = Parametro.id and " .
+		"avaliacao = {$avaliacao->getId()} " .
+		"ORDER BY velocidade";
+		print $sql;
 		$array = [];
 		$dados = mysqli_query($this->conexao, $sql);
 		$quantidade = mysqli_num_rows($dados);
 		for($i = 0; $i < $quantidade; $i++) {
 			$linha = mysqli_fetch_array($dados);
 			$nota = new Nota();
-			$nota->setAvaliacao($avaliacao->getId());
+			$nota->setIdAvaliacao($avaliacao->getId());
 			$nota->setVelocidade($linha['velocidade']);
 			$nota->setQuesito($linha['quesito']);
 			$nota->setNota($linha['nota']);       
 			$array[$i] = $nota;		
 		}	
-		return $notas;
-	}	
+		return $array;
+	}
 
    /**
 	* Desconecta do BD

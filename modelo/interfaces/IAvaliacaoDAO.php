@@ -13,19 +13,16 @@ interface IAvaliacaoDAO {
 
 	/**
 	* busca por uma Usuario
-	* @param Avaliacao $avaliacao objeto POJO de uma Usuario
+	* @param Avaliacao $avaliacao objeto POJO de uma Avaliacao
+	* @return Avaliacao $avaliacao objeto POJO de uma Avaliacao
 	*/
-	public function buscarPorAlunoDetalhe($avaliacao);
+	public function buscarAvaliacaoAluno($avaliacao);
 
 	/**
 	* busca por um Aluno
 	* @param Usuario $usuario objeto POJO de Usuario
+	* @return Avaliacao $avaliacao[]
 	*/
 	public function buscarPorAluno($aluno);
-
-	/**
-	* busca todas as avaliações
-	*/
-	public function buscarTodos();
 }
 ?>

@@ -10,24 +10,24 @@
  * @version Versão Inicial May 26, 2023
  */
 class Avaliacao {
-    private $idAvaliacao;
+    private $id;
 	private $aluno;
-	private $idAluno;
 	private $professor;
 	private $exame;
 	private $papel;
 	private $nivel;
 	private $observacao;
 	private $status;
+	private $rascunho;
 
 	public function __construct() {}
 
-	public function getIdAvaliacao() {
-		return $this->idAvaliacao;
+	public function getId() {
+		return $this->id;
 	}
 	
-	public function setIdAvaliacao($idAvaliacao) {
-		$this->idAvaliacao = $idAvaliacao;
+	public function setId($id) {
+		$this->id = $id;
 	}
 
 	public function getAluno() {
@@ -36,14 +36,6 @@ class Avaliacao {
 	
 	public function setAluno($aluno) {
 		$this->aluno = $aluno;
-	}
-
-	public function getIdAluno() {
-		return $this->idAluno;
-	}
-	
-	public function setIdAluno($idAluno) {
-		$this->idAluno = $idAluno;
 	}
 
 	public function getProfessor() {
@@ -77,6 +69,7 @@ class Avaliacao {
 	public function setNivel($nivel) {
 		$this->nivel = $nivel;
 	}
+
 	public function getObservacao() {
 		return $this->observacao;
 	}
@@ -90,6 +83,14 @@ class Avaliacao {
 	
 	public function setStatus($status) {
 		$this->status = $status;
+	}
+
+	public function getRascunho() {
+		return $this->rascunho;
+	}
+	
+	public function setRascunho($rascunho) {
+		$this->rascunho = $rascunho;
 	}
 
 	public function imprimir() {

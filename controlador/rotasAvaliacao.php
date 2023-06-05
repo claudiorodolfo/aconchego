@@ -4,6 +4,8 @@
  */
     require_once '../entidades/Usuario.php';
     require_once '../entidades/Avaliacao.php';
+    require_once '../entidades/Nota.php';
+	require_once 'NotaControlador.php';
 	require_once 'AvaliacaoControlador.php';
 
 /**
@@ -16,33 +18,38 @@
 /** @var String $_POST['acao'] define a ação que o usuário deseja executar no CRUD */
 if (isset($_POST['acao'])) {
    
-    /** @var AvaliacaoControlador $controlador permite chamar os métodos do controlador */
-    $controlador = new AvaliacaoControlador();
+    /** @var NotaControlador $controlador permite chamar os métodos de Notas */
+    $nControlador = new NotaControlador();
+    /** @var AvaliacaoControlador $controlador permite chamar os métodos de Avaliacao */
+    $aControlador = new AvaliacaoControlador();
 
     session_start();   
     switch ($_POST['acao']) {
         case 'buscar_por_aluno':
-            $user = unserialize($_SESSION['login']);  
-            $array = $controlador->buscarporAluno($user);
-            $_SESSION['array_avaliacao'] = serialize($array);
-            header("Location: ../visao/exame/mostrartodosaluno.php");
+             $user = unserialize($_SESSION['login']); 
+             $array = $aControlador->buscarporAluno($user);
+             $_SESSION['array_avaliacao'] = serialize($array);
+             header("Location: ../visao/avaliacao/mostrartodosaluno.php");
             break;
         case 'buscar_avaliacao_aluno':
-            $exames = unserialize($_SESSION['array_avaliacao']);
-            $item = $controlador->buscar($_POST['id']);
-            $e = $exames[$item];
-            $avaliacao = $controlador->buscarAvaliacaoAluno($e);
+            $arrayAvaliacao = unserialize($_SESSION['array_avaliacao']);
+            $indice = $_POST['indice_array'];
+            //$avaliacao = $array[$indice];
+            $avaliacao = $arrayAvaliacao[1];
+            $avaliacao = $aControlador->buscarAvaliacaoAluno($avaliacao);
             $_SESSION['avaliacao'] = serialize($avaliacao);
-            $array_notas = $controlador->buscarNotasAvaliacao($avaliacao);
-            $_SESSION['array_notas'] = serialize($array_notas);
+            
+            $arrayNota = $nControlador->buscarNotasAvaliacao($avaliacao);
+            $_SESSION['array_nota'] = serialize($arrayNota);
+            
             header("Location: ../visao/avaliacao/mostraravaliacao.php");
             break;
-        //case 'buscar_todos':
+        case 'buscar_todos':
             //  $array = $controlador->buscarTodos();
             // $_SESSION["array_exame"] = serialize($array);        
             //print "<script>location.href='../visao/usuario/mostrartodos.php';</script>";   
             // header("Location: ../visao/exame/mostrartodos.php");
-        //    break;
+            break;
         default:
     }
 }

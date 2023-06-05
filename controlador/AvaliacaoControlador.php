@@ -35,11 +35,11 @@ class AvaliacaoControlador {
 
     /**
 	* Busca um registro do BD
-	* @param Int $id é o identificador do registro que será buscado
+	* @param Avaliacao $avaliacao é o identificador do registro que será buscado
 	* @return Avaliacao
 	*/
-    public function buscarPorAlunoDetalhe($avaliacao) {
-        return $this->dao->buscarPorAlunoDetalhe($avaliacao);
+    public function buscarAvaliacaoAluno($avaliacao) {
+        return $this->dao->buscarAvaliacaoAluno($avaliacao);
     }
 
    /**

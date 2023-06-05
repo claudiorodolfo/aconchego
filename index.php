@@ -15,6 +15,11 @@
     <script src="visao/usuario/js/script.js"></script>          
   </head>
   <body class="p-3 m-0 border-1 bd-example">
+    <?php 
+    // Apaga todas as variáveis da sessão
+    $_SESSION = array();
+    session_destroy(); 
+    ?>
       <!--Ler cookie e preencher campos automaticamente
       se usuario selecionar check, gravar dados no cookie.
       -->
@@ -34,6 +39,7 @@
                   id="email" 
                   name="email"
                   placeholder="email@exemplo.com"
+                  autocomplete="username"
                   required>
               </div>
               <div class="mb-3">
@@ -44,6 +50,7 @@
                   id="senha" 
                   name="senha"
                   placeholder="Senha"
+                  autocomplete="current-password"
                   required>
               </div>
               <div class="mb-3">

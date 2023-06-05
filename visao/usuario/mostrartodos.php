@@ -14,13 +14,17 @@
     <script src="js/script.js"></script>        
   </head> 
   <body>
-    <?php        
+    <?php  
       session_start();
       require_once '../../entidades/Usuario.php' ;
       $login = unserialize($_SESSION['login']);
       if($login) {   
         if ($login->getTipo() === "Admin")  { //posso mostrar a página
     ?>
+      <form id="form" method="post" action="../../controlador/rotasUsuario.php">                                
+        <input type="hidden" name="acao" id="acao">
+        <input type="hidden" name="id" id="id">
+      </form>
     <div class="container">
     <br>
     <a class="btn btn-outline-primary" href="editar.php">Novo Usuário</a>
@@ -34,6 +38,9 @@
       </tr>
       <?php     
         $array = unserialize($_SESSION['array_usuario']);
+        if (!$array) {
+          print "<script type='text/javascript'>buscarTodos();</script>";
+        } 
         foreach($array as $item) {
       ?>
           <tr>
@@ -50,23 +57,15 @@
         }
       ?>
       </table>
-      <form id="form" method="post" action="../../controlador/rotasUsuario.php">                                
-        <input type="hidden" name="acao" id="acao">
-        <input type="hidden" name="id" id="id">
-      </form>
     </div>       
     <?php    
         } else { //usuario não autorizado
-          header("Location: ../proibido.php");
+          header("Location: ../../proibido.php");
         }
       
       } else { //redireciona pra tela de login
-        header("Location: ../index.php");
-      }
-      //if (!isset($array)) {
-        print "<script type='text/javascript'>buscarTodos();</script>";
-        //session_destroy();
-      //}    
+        header("Location: ../../index.php");
+      }   
     ?>
   </body>
 </html>

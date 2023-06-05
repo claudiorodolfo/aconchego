@@ -1,4 +1,6 @@
 function buscarPorAluno() {
+    alert('buscarPorAluno');
+    console.log('buscarPorAluno');
     $("#acao").val('buscar_por_aluno');
     $("#form").submit();
 }
@@ -8,9 +10,8 @@ function buscarPorAluno() {
 //    $("#form").submit();
 //}
 
-function buscarAvaliacaoAluno(exame, papel) {
+function buscarAvaliacaoAluno(indiceArray) {
     $("#acao").val('buscar_avaliacao_aluno');
-    $("#exame").val(exame);
-    $("#papel").val(papel);    
+    $("#indice_array").val(indiceArray); 
     $("#form").submit();
 }

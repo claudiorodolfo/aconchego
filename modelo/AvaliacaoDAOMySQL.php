@@ -38,32 +38,24 @@ class AvaliacaoDAOMySQL implements IAvaliacaoDAO {
 	* @param Avaliacao $avaliacao objeto POJO de uma Avaliacao
 	* @return Avaliacao
 	*/	
-	public function buscarPorAlunoDetalhe($avaliacao) {
+	public function buscarAvaliacaoAluno($avaliacao) {
 		/** @var string $sql contém a instrução SQL a ser executada no BD */
 		$sql = "SELECT aluno.nome as aluno, professor.nome as professor, Avaliacao.nivel, Avaliacao.status, Avaliacao.observacao " .
 				"FROM Avaliacao, Usuario aluno, Usuario professor " .
 				"WHERE Avaliacao.aluno = aluno.id and Avaliacao.professor = professor.id and ". 
-				"Avaliacao.aluno = {$avaliacao->getIdAluno()} and " .
-				"Avaliacao.exame = \"{$this->auxiliar->dataRemoveMascara($avaliacao->getExame())}\" and " .
-				"Avaliacao.papel = \"{$avaliacao->getPapel()}\"";	
+				"Avaliacao.id = {$avaliacao->getId()}";	
 		//print $sql;
-		$aval;
 		$dados = mysqli_query($this->conexao, $sql);
 		if (mysqli_num_rows($dados) > 0) {
 			$linha = mysqli_fetch_array($dados);
-			$aval = new Avaliacao();
-			$aval->setIdAluno($avaliacao->getIdAluno());
-			$aval->setExame($avaliacao->getExame());
-			$aval->setPapel($avaliacao->getPapel());
-			$aval->setIdAvaliacao($avaliacao->getIdAvaliacao());
 			
-			$aval->setAluno($linha['aluno']);
-			$aval->setProfessor($linha['professor']); 
-			$aval->setNivel($linha['nivel']);
-			$aval->setObservacao($linha['observacao']);
-			$aval->setStatus($linha['status']);
-		}	
-		return $aval;
+		 	$avaliacao->setAluno($linha['aluno']);
+		 	$avaliacao->setProfessor($linha['professor']); 
+		 	$avaliacao->setNivel($linha['nivel']);
+		 	$avaliacao->setObservacao($linha['observacao']);
+		 	$avaliacao->setStatus($linha['status']);
+		 }	
+		return $avaliacao;
 	}
 	
     /**
@@ -73,7 +65,7 @@ class AvaliacaoDAOMySQL implements IAvaliacaoDAO {
 	*/	
 	public function buscarPorAluno($aluno) {
 		/** @var string $sql contém a instrução SQL a ser executada no BD */	
-        $sql = "SELECT exame, papel, Avaliacao.id as idAvaliacao ".
+        $sql = "SELECT exame, papel, Avaliacao.id " .
                 "FROM Usuario, Avaliacao " .
                 "WHERE Usuario.id = Avaliacao.aluno and Avaliacao.rascunho = 0 and " .
 				"Usuario.id = {$aluno->getId()} " .
@@ -87,9 +79,8 @@ class AvaliacaoDAOMySQL implements IAvaliacaoDAO {
 		for($i = 0; $i < $quantidade; $i++) {
 			$linha = mysqli_fetch_array($dados);
 			$avaliacao = new Avaliacao();
-			$avaliacao->setIdAluno($aluno->getId());
 			
-			$avaliacao->setIdAvaliacao($linha['idAvaliacao']);	
+			$avaliacao->setId($linha['id']);	
 			$avaliacao->setExame($linha['exame']);
 			$avaliacao->setPapel($linha['papel']); 
 			

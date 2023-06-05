@@ -15,34 +15,36 @@
   </head> 
   <body>
   <?php        
-      require_once '../../entidades/Exame.php' ;     
       session_start();
-  ?>    
+      require_once '../../entidades/Avaliacao.php' ;     
+  ?>  
+      <form id="form" method="post" action="../../controlador/rotasAvaliacao.php">                                
+        <input type="hidden" name="acao" id="acao">
+        <input type="hidden" name="indice_array" id="indice_array">
+      </form>  
   <div class="container">
     <br><br>
     <table class='table table-striped table-bordered'>
       <tr>
-        <th style="text-align: center">Exame - Função</th>
+        <th style="text-align: center">Avaliação - Função</th>
       </tr>
-      <?php        
-        $array = unserialize($_SESSION['array_exame']);
-         if (!isset($array))
+      <?php   
+        $array = unserialize($_SESSION['array_avaliacao']);
+        //print_r($array);
+         if (!$array) {
           print "<script type='text/javascript'>buscarPorAluno();</script>";
-        //session_destroy();
+         }
+
+        $i = 0;
         foreach($array as $item) {
       ?>
           <tr>
-            <td style="text-align: center"><a href="#" onclick="buscaAvaliacaoAluno('<?= $item->getExame();?>', '<?= $item->getPapel(); ?>');"><?= $item->getExame() . " - " . $item->getPapel(); ?></a></td>
+            <td style="text-align: center"><a href="javascript:buscarAvaliacaoAluno(<?= $i++; ?>);"><?= $item->getExame() . " - " . $item->getPapel(); ?></a></td>
           </tr>
       <?php
         }
       ?>
       </table>
-      <form id="form" method="post" action="../../controlador/rotasAvaliacao.php">                                
-        <input type="hidden" name="acao" id="acao">
-        <input type="hidden" name="exame" id="exame">
-        <input type="hidden" name="papel" id="papel">
-      </form>
     </div>       
   </body>
 </html>
