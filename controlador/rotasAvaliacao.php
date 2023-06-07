@@ -33,9 +33,8 @@ if (isset($_POST['acao'])) {
             break;
         case 'buscar_avaliacao_aluno':
             $arrayAvaliacao = unserialize($_SESSION['array_avaliacao']);
-            $indice = $_POST['indice_array'];
-            //$avaliacao = $array[$indice];
-            $avaliacao = $arrayAvaliacao[1];
+            $indiceArray = $_POST['indiceArray'];            
+            $avaliacao = $arrayAvaliacao[$indiceArray];
             $avaliacao = $aControlador->buscarAvaliacaoAluno($avaliacao);
             $_SESSION['avaliacao'] = serialize($avaliacao);
             

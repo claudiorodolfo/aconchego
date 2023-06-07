@@ -23,6 +23,7 @@ class ConexaoMySQL {
 		$dados = file_get_contents("../modelo/conexoes/bd.json");
 		 $json = json_decode($dados);
 		$this->conexao = mysqli_connect($json->hostname,$json->username,$json->password,$json->schema);
+		mysqli_set_charset($this->conexao,"utf8");
 	}
 	
    /**

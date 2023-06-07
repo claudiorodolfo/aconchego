@@ -10,6 +10,7 @@ function buscarPorAluno() {
 
 function buscarAvaliacaoAluno(indiceArray) {
     $("#acao").val('buscar_avaliacao_aluno');
-    $("#indice_array").val(indiceArray); 
+    $("#indiceArray").val(indiceArray); 
+   //document.getElementById('indiceArray').value = indiceArray;
     $("#form").submit();
 }

@@ -2,7 +2,7 @@
 <html lang="pt-br">
   <head>
     <!-- Required meta tags -->
-     <meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">  
     <!-- JQuery JS -->  
     <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
@@ -17,6 +17,7 @@
   <body class="p-3 m-0 border-1 bd-example">
     <?php 
     // Apaga todas as variáveis da sessão
+    session_start();
     $_SESSION = array();
     session_destroy(); 
     ?>

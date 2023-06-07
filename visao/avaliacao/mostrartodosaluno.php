@@ -10,7 +10,7 @@
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Programador -->
-    <title>Exames do Aluno</title>    
+    <title>Avaliacões do Aluno</title>    
     <script src="js/script.js"></script>        
   </head> 
   <body>
@@ -18,9 +18,9 @@
       session_start();
       require_once '../../entidades/Avaliacao.php' ;     
   ?>  
-      <form id="form" method="post" action="../../controlador/rotasAvaliacao.php">                                
-        <input type="hidden" name="acao" id="acao">
-        <input type="hidden" name="indice_array" id="indice_array">
+      <form id="form" method="post" action="../../controlador/rotasAvaliacao.php">
+        <input type="hidden" name="acao" id="acao" />
+        <input type="hidden" name="indiceArray" id="indiceArray" value=1 />  
       </form>  
   <div class="container">
     <br><br>
@@ -30,7 +30,6 @@
       </tr>
       <?php   
         $array = unserialize($_SESSION['array_avaliacao']);
-        //print_r($array);
          if (!$array) {
           print "<script type='text/javascript'>buscarPorAluno();</script>";
          }

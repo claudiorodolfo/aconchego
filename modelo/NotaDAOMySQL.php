@@ -40,7 +40,7 @@ class NotaDAOMySQL implements INotaDAO {
 		"WHERE Nota.parametro = Parametro.id and " .
 		"avaliacao = {$avaliacao->getId()} " .
 		"ORDER BY velocidade";
-		print $sql;
+		//print $sql;
 		$array = [];
 		$dados = mysqli_query($this->conexao, $sql);
 		$quantidade = mysqli_num_rows($dados);

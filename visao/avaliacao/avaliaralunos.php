@@ -19,7 +19,7 @@
       id="form" 
       method="post" 
       action="../../controlador/rotasAvaliacao.php">
-      <input type="hidden" name="acao" id="acao">
+      <input type="hidden" name="acao" id="acao" />
     </form>
   </body>
 </html>

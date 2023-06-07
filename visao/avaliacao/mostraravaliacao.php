@@ -25,7 +25,8 @@
     ?>   
   <br>
   <a class="btn btn-outline-primary" href="mostrartodosaluno.php">Voltar</a>
-    <br><br>
+  <a class="btn btn-outline-primary" href="../../index.php">Sair</a>
+  <br><br>
       <div style="text-align: center" <?= ($avaliacao->getStatus() == 'Aprovado')? 'class="alert alert-success"':'class="alert alert-warning"'; ?> role="alert">
         <?= $avaliacao->getStatus(); ?>
       </div>

@@ -35,8 +35,8 @@
       enctype="multipart/form-data"
       action="../../controlador/rotasUsuario.php"
       method="post">
-        <input type="hidden" name="acao" value="salvar">
-        <input type="hidden" name="id" id="id" value="<?= $item->getId(); ?>">
+        <input type="hidden" name="acao" value="salvar" />
+        <input type="hidden" name="id" id="id" value="<?= $item->getId(); ?>" />
 				<h1>Edição de Usuários</h1>
 				<br>
         <div class="form-group">
@@ -46,7 +46,7 @@
             id="nome" 
             name="nome" 
             value="<?= $item->getNome(); ?>"
-            Required>
+            Required />
         </div>
         <div class="form-group">
           <label for="email" class="text-danger">*E-mail:</label>
@@ -56,7 +56,7 @@
             id="email" 
             name="email" 
             value="<?= $item->getEmail(); ?>"
-            Required>
+            Required />
         </div>    
         <div class="form-group">
           <label for="cpf">CPF:</label>
@@ -64,7 +64,7 @@
             class="form-control" 
             id="cpf" 
             name="cpf" 
-            value="<?= $item->getCpf(); ?>">
+            value="<?= $item->getCpf(); ?>" />
         </div>  
         <div class="form-group">
           <label for="data_nascimento">Data de Nascimento:</label>
@@ -72,7 +72,7 @@
             class="form-control" 
             id="data_nascimento" 
             name="data_nascimento" 
-            value="<?= $item->getDataNascimento(); ?>">
+            value="<?= $item->getDataNascimento(); ?>" />
         </div>  
         <div class="form-group">
           <label for="telefone">Telefone:</label>
@@ -80,7 +80,7 @@
             class="form-control" 
             id="telefone" 
             name="telefone" 
-            value="<?= $item->getTelefone(); ?>">
+            value="<?= $item->getTelefone(); ?>" />
         </div>  
         <div class="form-group">
           <label for="endereco">Endereço:</label>
@@ -127,7 +127,7 @@
         </div>                 
         <div class="form-group">
           <label for="foto">Foto:</label>
-          <input type="file" class="form-control" id="foto" name="foto" value="<?= $item->getFoto(); ?>">
+          <input type="file" class="form-control" id="foto" name="foto" value="<?= $item->getFoto(); ?>" />
         </div>
         <div class="form-group">
           <label for="esta_ativo" class="text-danger">*Ativo:</label>
@@ -141,11 +141,11 @@
         ?>
         <div class="form-group">
           <label for="senha" class="text-danger">*Senha:</label>
-          <input type="password" class="form-control" id="senha" name="senha" value="<?= $item->getEmail(); ?>">
+          <input type="password" class="form-control" id="senha" name="senha" value="<?= $item->getEmail(); ?>" />
         </div> 
         <div class="form-group">
           <label for="confirma_senha" class="text-danger">*Confirma a senha:</label>
-          <input type="password" class="form-control" id="confirma_senha" name="confirma_senha" value="<?= $item->getEmail(); ?>">
+          <input type="password" class="form-control" id="confirma_senha" name="confirma_senha" value="<?= $item->getEmail(); ?>" />
         </div>   
         <?php
           }
