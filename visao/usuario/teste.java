@@ -38,7 +38,6 @@ public class PilhaDinamica extends Empilhavel {
 	}
 
     public void atualizar(int posicao, Object elemento) {
-        Object dado = null;
 		if (!estaVazia()) {
 			if ((posicao > 0) && (posicao <= quantidade)) {
 				NoDuplo ponteiroAuxiliar = ponteiroInicio;
@@ -51,5 +50,5 @@ public class PilhaDinamica extends Empilhavel {
             }
 		} 
 	}
-    
+
 }
