@@ -17,7 +17,7 @@ public class PilhaDinamica extends Empilhavel {
 		return dadoTopo;
 	}
 
-    public void enfileirar(Object dado){
+    void enfileirar(Object dado){
 		if(!estaCheia()) {
 			NodoDuplo novoNodo = new NodoDuplo();
 			novoNodo.setDado(dado);
