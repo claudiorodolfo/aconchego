@@ -17,7 +17,7 @@ public class PilhaDinamica extends Empilhavel {
 		return dadoTopo;
 	}
 
-    void enfileirar(Object dado){
+    public void enfileirar(Object dado){
 		if(!estaCheia()) {
 			NodoDuplo novoNodo = new NodoDuplo();
 			novoNodo.setDado(dado);
@@ -25,7 +25,7 @@ public class PilhaDinamica extends Empilhavel {
 				ponteiroFim.setProximo(novoNodo);
 			}
 			novoNodo.setAnterior(ponteiroFim);
-			quantidade++;
+		    quantidade++;
 		} else {
 			System.out.println("Queue is full");
 		}
