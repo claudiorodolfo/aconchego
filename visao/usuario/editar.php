@@ -94,35 +94,48 @@
         </div>                                   
         <div class="form-group">
           <label for="condutor">Nível Condutor(a):</label>
-          <select class="form-control" id="condutor" name="condutor">
-            <option value="" <?= ($item->getNivelCondutor() == '') ? 'selected':''; ?>></option>
-            <option value="EstakaZero" <?= ($item->getNivelCondutor() == 'EstakaZero') ? 'selected':''; ?>>EstakaZero</option>
-            <option value="FalaMansa" <?= ($item->getNivelCondutor() == 'FalaMansa') ? 'selected':''; ?>>FalaMansa</option>
-            <option value="Bicho de Pé" <?= ($item->getNivelCondutor() == 'Bicho de Pé') ? 'selected':''; ?>>Bicho de Pé</option>
-            <option value="Virgulino" <?= ($item->getNivelCondutor() == 'Virgulino') ? 'selected':''; ?>>Virgulino</option>
-            <option value="Dominguinhos" <?= ($item->getNivelCondutor() == 'Dominguinhos') ? 'selected':''; ?>>Dominguinhos</option>
-            <option value="Luiz Gonzaga" <?= ($item->getNivelCondutor() == 'Luiz Gonzaga') ? 'selected':''; ?>>Luiz Gonzaga</option>    
+          <select 
+            class="form-control" 
+            id="condutor" 
+            name="condutor">
+          <?php
+              $niveis = new array("","EstakaZero", "FalaMansa", "Bicho de Pé", "Virgulino", "Dominguinhos", "Luiz Gonzaga");
+              foreach( $nivel as $nivel) {
+            ?>
+                <option value="<?= $nivel ?>" <?= ($item->getNivelConduzido() == $nivel) ? 'selected':''; ?>><?= $nivel ?></option>
+            <?php
+              }
+            ?>
           </select>
         </div>
         <div class="form-group">
           <label for="conduzido">Nível Conduzida(o):</label>
           <select class="form-control" id="conduzido" name="conduzido">
-          <option value="" <?= ($item->getNivelConduzido() == '') ? 'selected':''; ?>></option>
-            <option value="EstakaZero" <?= ($item->getNivelConduzido() == 'EstakaZero') ? 'selected':''; ?>>EstakaZero</option>
-            <option value="FalaMansa" <?= ($item->getNivelConduzido() == 'FalaMansa') ? 'selected':''; ?>>FalaMansa</option>
-            <option value="Bicho de Pé" <?= ($item->getNivelConduzido() == 'Bicho de Pé') ? 'selected':''; ?>>Bicho de Pé</option>
-            <option value="Virgulino" <?= ($item->getNivelConduzido() == 'Virgulino') ? 'selected':''; ?>>Virgulino</option>
-            <option value="Dominguinhos" <?= ($item->getNivelConduzido() == 'Dominguinhos') ? 'selected':''; ?>>Dominguinhos</option>
-            <option value="Luiz Gonzaga" <?= ($item->getNivelConduzido() == 'Luiz Gonzaga') ? 'selected':''; ?>>Luiz Gonzaga</option>    
+            <?php
+              $niveis = new array("","EstakaZero", "FalaMansa", "Bicho de Pé", "Virgulino", "Dominguinhos", "Luiz Gonzaga");
+              foreach( $nivel as $nivel) {
+            ?>
+                <option value="<?= $nivel ?>" <?= ($item->getNivelConduzido() == $nivel) ? 'selected':''; ?>><?= $nivel ?></option>
+            <?php
+              }
+            ?>
           </select>
         </div>  
         <div class="form-group">
           <label for="tipo" class="text-danger">*Tipo:</label>
-          <select class="form-control" id="tipo" name="tipo">
-            <option value="Aluno" <?= ($item->getTipo() == 'Aluno') ? 'selected':''; ?>>Aluno</option>
-            <option value="Instrutor" <?= ($item->getTipo() == 'Instrutor') ? 'selected':''; ?>>Instrutor</option>
-            <option value="Professor" <?= ($item->getTipo() == 'Professor') ? 'selected':''; ?>>Professor</option>
-            <option value="Admin" <?= ($item->getTipo() == 'Admin') ? 'selected':''; ?>>Admin</option>
+          <select 
+            class="form-control" 
+            id="tipo" 
+            name="tipo" 
+            Required >
+            <?php
+              $tipos = new array("Aluno", "Instrutor", "Professor", "Admin");
+              foreach( $tipos as $tipo) {
+            ?>
+                <option value="<?= $tipo ?>" <?= ($item->getTipo() == $tipo) ? 'selected':''; ?>><?= $tipo ?></option>
+            <?php
+              }
+            ?>
           </select>
         </div>                 
         <div class="form-group">
@@ -131,7 +144,11 @@
         </div>
         <div class="form-group">
           <label for="esta_ativo" class="text-danger">*Ativo:</label>
-          <select class="form-control" id="esta_ativo" name="esta_ativo">
+          <select 
+            class="form-control" 
+            id="esta_ativo" 
+            name="esta_ativo" 
+            Required >
             <option value="0" <?= ($item->getEstaAtivo() == '0') ? 'selected':''; ?>>Não</option>
             <option value="1" <?= ($item->getEstaAtivo() == '1') ? 'selected':''; ?>>Sim</option>
           </select>
@@ -141,11 +158,23 @@
         ?>
         <div class="form-group">
           <label for="senha" class="text-danger">*Senha:</label>
-          <input type="password" class="form-control" id="senha" name="senha" value="<?= $item->getEmail(); ?>" />
+          <input 
+            type="password" 
+            class="form-control" 
+            id="senha" 
+            name="senha" 
+            value="<?= $item->getSenha(); ?>"  
+            Required />
         </div> 
         <div class="form-group">
           <label for="confirma_senha" class="text-danger">*Confirma a senha:</label>
-          <input type="password" class="form-control" id="confirma_senha" name="confirma_senha" value="<?= $item->getEmail(); ?>" />
+          <input 
+            type="password" 
+            class="form-control" 
+            id="confirma_senha" 
+            name="confirma_senha" 
+            value="<?= $item->getSenha(); ?>" 
+            Required />
         </div>   
         <?php
           }
